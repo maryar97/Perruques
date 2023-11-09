@@ -1,0 +1,52 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des produits{% endblock %}
+
+{% block body %}
+<h1> Liste des produits </h1> 
+    <table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Accessoires</th>
+      <th scope="col">Perruques</th>
+      <th scope="col">Tissages brésilien</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="table-danger">
+      <td> Bonnets<a href="{{path('app_bonnet')}}"></a></td>
+        <td>Carré plongeant</td>
+      <td>Pack 3 bundle</td>
+    </tr>
+    <tr class="table-danger">
+      <td>Coloration</td>
+      <td>Perruque courte</td>
+      <td>Pack 3 bundle + closure</td>
+    </tr>
+    <tr class="table-danger">
+      <td>Lisseur peigne chauffant</td>
+      <td>Perruque 360°</td>
+      <td>Pack 3 bundle dégradé + closure</td>
+    </tr>
+    <tr class="table-danger">
+      <td> </td>
+      <td>Perruque de couleur</td>
+      <td></td>
+    </tr>
+    <tr class="table-danger">
+      <td> </td>
+      <td>Perruque frange</td>
+      <td> </td>
+    </tr>
+    <tr class="table-danger">
+      <td> </td>
+      <td>Perruque sans colle</td>
+      <td> </td>
+    </tr>
+    
+    </tr>
+  </tbody>
+</table>
+
+{% endblock %}

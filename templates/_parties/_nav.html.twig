@@ -1,0 +1,67 @@
+<nav class="navbar navbar-expand-lg bg-danger" data-bs-theme="light">
+	<div class="container-fluid">
+		<a class="navbar-brand" href="{{path('app_accueil')}}">LYARHAIR</a>
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarColor03">
+			<ul class="navbar-nav me-auto">
+				<li class="nav-item">
+					<a class="nav-link" href="{{path('app_accueil')}}">ACCUEIL</a>
+				</li>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">PERRUQUES</a>
+					<div class="dropdown-menu dark">
+						<a class="dropdown-item" href="{{path('app_carr_plongeant')}}">CARRÉ PLONGEANT</a>
+						<a class="dropdown-item" href="{{path('app_perruque_courte')}}">PERRUQUE COURTE</a>
+						<a class="dropdown-item" href="{{path('app_perruques360_')}}">PERRUQUE 360°</a>
+						<a class="dropdown-item" href="{{path('app_perruques_de_couleurs')}}">PERRUQUE DE COULEUR°</a>
+						<a class="dropdown-item" href="{{path('app_perruques_frange')}}">PERRUQUE FRANGE</a>
+						<a class="dropdown-item" href="{{path('app_perruques_sans_colle')}}">PERRUQUE SANS COLLE</a>
+					</li>
+				</li>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">TISSAGES BRÉSILIEN</a>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" href="{{path('app_pack3_bundle')}}">PACK 3 BUNDLE</a>
+						<a class="dropdown-item" href="{{path('app_pack3_bundle_plus_closure')}}">PACK 3 BUNDLE + CLOSURE
+						</a>
+						<a class="dropdown-item" href="{{path('app_pack3_bundle_d_grad_plus_closure')}}">PACK 3 BUNDLE DÉGRADÉ + CLOSURE
+						</a>
+					</li>
+				</li>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">ACCESSOIRES</a>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" href="{{path('app_bonnet')}}">BONNETS</a>
+						<a class="dropdown-item" href="{{path('app_coloration')}}">COLORATION</a>
+						<a class="dropdown-item" href="{{path('app_lisseur_peigne_chauffant')}}">LISSEUR CHAUFFANT</a>
+					</li>
+				</li>
+				
+			</ul>
+			<ul class="navbar-nav ms-auto mb-lg-0">
+			<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+			  <li class="nav-item">
+			     <a class"navco" href="/panier"> 
+				<button type="button" class="btn btn-light navco text-black">Panier( 0 )</button>
+			     </a>
+			  </li> &nbsp;
+			{% if app.user %}
+			  <li class="nav-item">
+			    <a class="navco" href="{{ path('app_logout')}}"> 
+					<button type="button" class="btn btn-light navco text-black"> Me déconnecter</button>
+					</a>
+				</li> &nbsp;
+				{% else %}
+				<li class="nav-item">
+				  <a class="navco" href="{{ path('app_login')}}">
+					<button type="button" class="btn btn-light navco text-black"> Me connecter</button>
+					</a>
+				  </li>
+				  {% endif %}
+			
+
+		</div>
+	</div>
+</nav>
