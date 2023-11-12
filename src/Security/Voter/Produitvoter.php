@@ -11,7 +11,7 @@ use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 
 class ProduitVoter extends Voter
 {
-  
+
 
     private $security; 
 

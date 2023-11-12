@@ -32,14 +32,15 @@ class Produit
     #[ORM\Column(length: 100)]
     private ?string $reffou = null;
 
-    #[ORM\Column(type: Types::DECIMAL, precision: 7, scale: 2)]
-    private ?string $prixachat = null;
-
+    
     #[ORM\Column(length: 255)]
     private ?string $photo = null;
 
-    
+    #[ORM\Column]
+    private ?int $prixachat = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?int $stock = null;
     
 
     #[ORM\ManyToOne(inversedBy: 'Produits')]
@@ -53,6 +54,9 @@ class Produit
     #[ORM\OneToMany(mappedBy: 'Produit', targetEntity: Detailscommandes::class)]
     private Collection $detailscommandes;
 
+    
+
+   
     
     public function __construct()
     {
@@ -126,17 +130,7 @@ class Produit
         return $this;
     }
 
-    public function getPrixachat(): ?float
-    {
-        return $this->prixachat;
-    }
-
-    public function setPrixachat(float $prixachat): self
-    {
-        $this->prixachat = $prixachat;
-
-        return $this;
-    }
+    
 
     public function getPhoto(): ?string
     {
@@ -149,6 +143,8 @@ class Produit
 
         return $this;
     }
+
+    
 
     public function getFournisseur(): ?Fournisseur
     {
@@ -203,4 +199,30 @@ class Produit
 
         return $this;
     }
+
+    public function getPrixAchat(): ?int
+    {
+        return $this->prixachat;
+    }
+
+    public function setPrixAchat(int $prixachat): static
+    {
+        $this->prixachat = $prixachat;
+
+        return $this;
+    }
+
+    public function getStock(): ?int
+    {
+        return $this->stock;
+    }
+
+    public function setStock(int $stock): static
+    {
+        $this->stock = $stock;
+
+        return $this;
+    }
+
+    
 }
