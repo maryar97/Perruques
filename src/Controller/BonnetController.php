@@ -14,7 +14,8 @@ class BonnetController extends AbstractController
     {
         $produit=$produitRepository->findBy(['categorie'=>1]);
         return $this->render('bonnet/index.html.twig', [
-            'produits'=>$produit, 
+            'produits'=>$produit,
+             
         ]);
     }
 }
