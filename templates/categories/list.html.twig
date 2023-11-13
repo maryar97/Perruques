@@ -15,6 +15,9 @@
             <h1> Liste des produits de la catégorie {{categorie.nomcat}}  </h1>  
 			</div> 
 			{% for produit in produits %}
+			 <div class="col-10">
+        <div class="card">
+            <img src="/images/{{ produit.photo }}" class="card-img-top" alt="{{ produit.photo}}">
 			<div class="col-3 mb-3">
 			    <article class="card h-100"> 
 				    <div class="card-body"> 
