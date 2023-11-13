@@ -17,7 +17,7 @@
 	</head>
 	<body>
 
-		{% include "_parties/_nav.html.twig"%}
+		{% include "_parties/_nav.html.twig" %}
 		{% if app.user and app.user.isVerified == false %}
 			<div class="alert alert-warning alert-dismissible" role="alert">
 				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="close"></button>
@@ -30,12 +30,11 @@
 
 		{% endif %}
 
-		{% include "_parties/_flash.html.twig"%}
+		{% include "_parties/_flash.html.twig" %}
 
-		{% block body %}{% endblock %}
+			{% block body %} {% include "_parties/_footer.html.twig" %}
+			{% endblock %}
 
-
-		{% include "_parties/_footer.html.twig"%}
 
 
 		<!-- Fichiers JS-->

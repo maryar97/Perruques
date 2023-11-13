@@ -31,17 +31,17 @@
                 <td>{{ produit.prixachat }}</td>
                 <td>{{ produit.stock }}</td>
                 <td>
-                    <a href="{{ path('app_produit_crud_show', {'id': produit.id}) }}">show</a>
-                    <a href="{{ path('app_produit_crud_edit', {'id': produit.id}) }}">edit</a>
+                    <a href="{{ path('app_produit_crud_afficher', {'id': produit.id}) }}">Afficher</a>
+                    <a href="{{ path('app_produit_crud_modifier', {'id': produit.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="9">no records found</td>
+                <td colspan="9">Aucun n'enregistrement n'a été trouvé</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_produit_crud_new') }}">Create new</a>
+    <a href="{{ path('app_produit_crud_nouveau') }}">Créer un nouveau</a>
 {% endblock %}

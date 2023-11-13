@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Produit{% endblock %}
+{% block title %} Détails de {{ produit.libcourt}}{% endblock %}
 
 {% block body %}
-    <h1>Produit</h1>
+    <h1> Détails de {{ produit.libcourt}}</h1>
 
     <table class="table">
         <tbody>
@@ -42,9 +42,9 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_produit_crud_index') }}">back to list</a>
+    <a href="{{ path('app_produit_crud_index') }}">Retour a la liste</a>
 
-    <a href="{{ path('app_produit_crud_edit', {'id': produit.id}) }}">edit</a>
+    <a href="{{ path('app_produit_crud_modifier', {'id': produit.id}) }}">Modifier</a>
 
-    {{ include('produit_crud/_delete_form.html.twig') }}
+    {{ include('produit_crud/_supprimer_form.html.twig') }}
 {% endblock %}

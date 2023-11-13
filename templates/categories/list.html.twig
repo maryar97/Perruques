@@ -1,15 +1,20 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Liste des produits de la catégorie {{ categorie.nomcat }}
+
+{% block title %}Liste des produits de la catégorie {{categorie.nomcat}} 
 {% endblock %}
 
 
 {% block body %}
+
+{# {{dump(categorie)}} #}
+
     <main class="container">
 		<section class="row">
 			<div class="col-12">
-            <h1> Liste des produits de la catégorie {{ categorie.nomcat }} </h1>  
+            <h1> Liste des produits de la catégorie {{categorie.nomcat}}  </h1>  
 			</div> 
+
 			{% for produit in produits %}
 			<div class="col-3 mb-3">
 			    <article class="card h-100"> 
@@ -17,10 +22,8 @@
 					    <h2 class="card-title">{{ produit.sousrubriqueart }} </h2> 
 						<p class="card-text">{{ produit.libcourt}} </p> 
 						<div class="col-4"> 
-							<img src="{{ asset('images/2.jpg') }}" class="d-block w-100" alt="..."/></br> 
-
 						</div> 
-						<a href="{{path('produits_details', {'id':categorie.id}) }}" class="btn btn-primary"> Voir les détails </a> 
+						 <a href="{{ path('app_produit_crud_afficher', {'id':produit.id}) }}" class="btn btn-primary"> Voir les détails </a> 
 					</div> 
 				</article> 
 			</div> 			

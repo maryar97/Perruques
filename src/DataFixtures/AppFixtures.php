@@ -663,6 +663,7 @@ class AppFixtures extends Fixture
                ->setreffou('fournisseur2')
                ->setFournisseur($fournisseur2)
                ->setprixachat(3)
+               ->setstock(9)
                ->setphoto('bo1.jpeg');
                $manager->persist($produit1);
                $souscategorie1->addProduit($produit1);
@@ -676,6 +677,7 @@ class AppFixtures extends Fixture
                ->setreffou('fournisseur5')
                ->setFournisseur($fournisseur5)
                ->setprixachat(3)
+               ->setstock(9)
                ->setphoto('bo2.jpeg');
                $manager->persist($produit2);
                $souscategorie1->addProduit($produit2);
@@ -689,6 +691,7 @@ class AppFixtures extends Fixture
                ->setreffou('fournisseur7')
                ->setFournisseur($fournisseur7)
                ->setprixachat(10)
+               ->setstock(8)
                ->setphoto('colo2.jpeg');
                $manager->persist($produit3);
                $souscategorie2->addProduit($produit3);
@@ -702,6 +705,7 @@ class AppFixtures extends Fixture
                ->setreffou('fournisseur1')
                ->setFournisseur($fournisseur1)
                ->setprixachat(10)
+               ->setstock(10)
                ->setphoto('colo3.jpeg');
                $manager->persist($produit4);
                $souscategorie2->addProduit($produit4);
@@ -715,6 +719,7 @@ class AppFixtures extends Fixture
                ->setreffou('fournisseur2')
                ->setFournisseur($fournisseur2)
                ->setprixachat(25)
+               ->setstock(5)
                ->setphoto('lisseur.jpeg');
                $manager->persist($produit5);
                $souscategorie3->addProduit($produit5);
@@ -728,6 +733,7 @@ class AppFixtures extends Fixture
                ->setreffou('fournisseur9')
                ->setFournisseur($fournisseur9)
                ->setprixachat(30)
+               ->setstock(3)
                ->setphoto('lisseur3.jpeg');
                $manager->persist($produit6);
                $souscategorie3->addProduit($produit6);
@@ -735,12 +741,13 @@ class AppFixtures extends Fixture
 
         $produit7 = new Produit();
         $produit7->setrubriqueart('Perruques')
-               ->setsousrubriqueart('Carré plongenant')
+               ->setsousrubriqueart('Carré plongeant')
                ->setlibcourt('Bobo wig front lace 13*4 raide noir standard. ')
                ->setliblong('La dentelle HD est un matériau de dentelle royale également appelé dentelle suisse, qui est invisible lorsqu elle est appliquée sur le cuir chevelu. Cela garantit que le porteur de la perruque peut avoir une racine des cheveux exposée, ce qui semble très naturel et rend la dentelle le long de la racine des cheveux hautement indétectable.')
                ->setreffou('fournisseur8')
                ->setFournisseur($fournisseur8)
                ->setprixachat(125)
+               ->setstock(11)
                ->setphoto('image4.jpg');
                $manager->persist($produit7);
                $souscategorie4->addProduit($produit7);
@@ -754,6 +761,7 @@ class AppFixtures extends Fixture
                ->setreffou('fournisseur6')
                ->setFournisseur($fournisseur6)
                ->setprixachat(99)
+               ->setstock(2)
                ->setphoto('image16.jpg');
                $manager->persist($produit8);
                $souscategorie5->addProduit($produit8);
@@ -767,6 +775,7 @@ class AppFixtures extends Fixture
                ->setreffou('fournisseur3')
                ->setFournisseur($fournisseur3)
                ->setprixachat(350)
+               ->setstock(6)
                ->setphoto('image47.jpeg');
                $manager->persist($produit9);
                $souscategorie6->addProduit($produit9);
@@ -780,6 +789,7 @@ class AppFixtures extends Fixture
                ->setreffou('fournisseur4')
                ->setFournisseur($fournisseur4)
                ->setprixachat(100)
+               ->setstock(7)
                ->setphoto('image56.jpg');
                $manager->persist($produit10);
                $souscategorie7->addProduit($produit10);
@@ -788,11 +798,12 @@ class AppFixtures extends Fixture
         $produit11 = new Produit();
         $produit11->setrubriqueart('Perruques')
                ->setsousrubriqueart('Perruques frange')
-               ->setlibcourt('Perruque frange noir.')
+               ->setlibcourt('Perruque frange noire.')
                ->setliblong('Perruque moyenne noire ondulée à frange. Elle est idéal pour toutes celles qui souhaitent changer de look en un clin d oeil. Nos perruques sont fabriquées avec soin, toujours dans un grand souci de qualité. A chacune son style, trouvez le vôtre!')
                ->setreffou('fournisseur10')
                ->setFournisseur($fournisseur10)
                ->setprixachat(125)
+               ->setstock(4)
                ->setphoto('image114.jpg');
                $manager->persist($produit11);
                $souscategorie8->addProduit($produit11);
@@ -806,6 +817,7 @@ class AppFixtures extends Fixture
                ->setreffou('fournisseur9')
                ->setFournisseur($fournisseur9)
                ->setprixachat(135)
+               ->setstock(3)
                ->setphoto('image122.jpeg');
                $manager->persist($produit12);
                $souscategorie8->addProduit($produit12);
@@ -819,6 +831,7 @@ class AppFixtures extends Fixture
                ->setreffou('fournisseur7')
                ->setFournisseur($fournisseur7)
                ->setprixachat(225)
+               ->setstock(8)
                ->setphoto('image138.jpg');
                $manager->persist($produit13);
                $souscategorie9->addProduit($produit13);
@@ -832,6 +845,7 @@ class AppFixtures extends Fixture
                ->setreffou('fournisseur8')
                ->setFournisseur($fournisseur8)
                ->setprixachat(225)
+               ->setstock(3)
                ->setphoto('image144.jpg');
                $manager->persist($produit14);
                $souscategorie9->addProduit($produit14);
@@ -844,6 +858,7 @@ class AppFixtures extends Fixture
                ->setreffou('fournisseur7')
                ->setFournisseur($fournisseur7)
                ->setprixachat(140)
+               ->setstock(7)
                ->setphoto('bundle1.jpg');
                $manager->persist($produit15);
                $souscategorie10->addProduit($produit15);
@@ -856,6 +871,7 @@ class AppFixtures extends Fixture
                ->setreffou('fournisseur5')
                ->setFournisseur($fournisseur5)
                ->setprixachat(145)
+               ->setstock(3)
                ->setphoto('bundle2.jpg');
                $manager->persist($produit16);
                $souscategorie10->addProduit($produit16);
@@ -868,6 +884,7 @@ class AppFixtures extends Fixture
                ->setreffou('fournisseur6')
                ->setFournisseur($fournisseur6)
                ->setprixachat(145)
+               ->setstock(8)
                ->setphoto('bundle3.jpg');
                $manager->persist($produit17);
                $souscategorie10->addProduit($produit17);
@@ -880,6 +897,7 @@ class AppFixtures extends Fixture
                ->setreffou('fournisseur5')
                ->setFournisseur($fournisseur5)
                ->setprixachat(225)
+               ->setstock(5)
                ->setphoto('closeure1.jpg');
                $manager->persist($produit18);
                $souscategorie11->addProduit($produit18);
@@ -892,6 +910,7 @@ class AppFixtures extends Fixture
                ->setreffou('fournisseur10')
                ->setFournisseur($fournisseur10)
                ->setprixachat(235)
+               ->setstock(2)
                ->setphoto('closure2.jpg');
                $manager->persist($produit19);
                $souscategorie11->addProduit($produit19);
@@ -905,6 +924,7 @@ class AppFixtures extends Fixture
                ->setreffou('fournisseur9')
                ->setFournisseur($fournisseur9)
                ->setprixachat(235)
+               ->setstock(1)
                ->setphoto('closure3.jpg');
                $manager->persist($produit20);
                $souscategorie11->addProduit($produit20);
@@ -918,6 +938,7 @@ class AppFixtures extends Fixture
                ->setreffou('fournisseur1')
                ->setFournisseur($fournisseur1)
                ->setprixachat(237)
+               ->setstock(5)
                ->setphoto('degrade1.jpg');
                $manager->persist($produit21);
                $souscategorie12->addProduit($produit21);
@@ -930,6 +951,7 @@ class AppFixtures extends Fixture
                ->setreffou('fournisseur2')
                ->setFournisseur($fournisseur2)
                ->setprixachat(240)
+               ->setstock(7)
                ->setphoto('degrade2.jpg');
                $manager->persist($produit22);
                $souscategorie12->addProduit($produit22);
@@ -942,11 +964,10 @@ class AppFixtures extends Fixture
                ->setreffou('fournisseur1')
                ->setFournisseur($fournisseur1)
                ->setprixachat(240)
+               ->setstock(2)
                ->setphoto('degrade3.jpg');
                $manager->persist($produit23);
                $souscategorie12->addProduit($produit23);
-
-
                $manager->flush();
 
       

@@ -17,25 +17,23 @@
 				Bienvenue dans notre boutique
 			</p>
 		</div>
-        <img src="{{ asset('images/2.jpg') }}" class="d-block w-100" alt="..."/></br> 
+        <img src="{{ asset('images/imageaccueil.jpeg') }}" class="d-block w-100" alt="..."/></br> 
 		{% for categorie in categories %}
 			{% if categorie.parent == null %}
-				<div class="col-12">
 					<h2>{{ categorie.nomcat }}</h2>
+						<div class="row">
 					{% for cat in categorie.categories %}
                         <div class="col-4"> 
 						<div class="card" style="width: 15rem;">
 							<div class="card-body" >
 								<h8 class="card-title">{{ cat.nomcat }}</h8>
-								<a href="{{path('list', {'id':cat.id})}}" class="btn btn-primary">Voir les produits</a>
+                                <a href="{{path('list', {'id':cat.id,'sousrubriqueart':cat.nomcat})}}" class="btn btn-warning">Voir les produits</a>
 							</div>
 						</div>
+						</div>
 					{% endfor %}
-				{% endif %}
-
-
-			</div>
-
+						</div>
+			{% endif %}
 		{% endfor %}
 		<!--<div class"col-12">
 			{{ dump() }}

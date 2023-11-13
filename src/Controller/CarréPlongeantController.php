@@ -13,6 +13,7 @@ class CarréPlongeantController extends AbstractController
     public function index(ProduitRepository $produitRepository): Response
     {
         $produit=$produitRepository->findBy(['categorie'=>2]);
+        
 
         return $this->render('carréplongeant/index.html.twig', [
             'produits'=>$produit, 

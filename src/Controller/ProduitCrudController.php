@@ -22,9 +22,10 @@ class ProduitCrudController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'app_produit_crud_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    #[Route('/nouveau', name: 'app_produit_crud_nouveau', methods: ['GET', 'POST'])]
+    public function nouveau(Request $request, EntityManagerInterface $entityManager): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         $produit = new Produit();
         $form = $this->createForm(ProduitType::class, $produit);
         $form->handleRequest($request);
@@ -36,23 +37,24 @@ class ProduitCrudController extends AbstractController
             return $this->redirectToRoute('app_produit_crud_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('produit_crud/new.html.twig', [
+        return $this->renderForm('produit_crud/nouveau.html.twig', [
             'produit' => $produit,
             'form' => $form,
         ]);
     }
 
-    #[Route('/{id}', name: 'app_produit_crud_show', methods: ['GET'])]
-    public function show(Produit $produit): Response
+    #[Route('/{id}', name: 'app_produit_crud_afficher', methods: ['GET'])]
+    public function afficher(Produit $produit): Response
     {
-        return $this->render('produit_crud/show.html.twig', [
+        return $this->render('produit_crud/afficher.html.twig', [
             'produit' => $produit,
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_produit_crud_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Produit $produit, EntityManagerInterface $entityManager): Response
+    #[Route('/modifier/{id}', name: 'app_produit_crud_modifier', methods: ['GET', 'POST'])]
+    public function modifier(Request $request, Produit $produit, EntityManagerInterface $entityManager): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         $form = $this->createForm(ProduitType::class, $produit);
         $form->handleRequest($request);
 
@@ -62,16 +64,17 @@ class ProduitCrudController extends AbstractController
             return $this->redirectToRoute('app_produit_crud_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('produit_crud/edit.html.twig', [
+        return $this->renderForm('produit_crud/modifier.html.twig', [
             'produit' => $produit,
             'form' => $form,
         ]);
     }
 
-    #[Route('/{id}', name: 'app_produit_crud_delete', methods: ['POST'])]
-    public function delete(Request $request, Produit $produit, EntityManagerInterface $entityManager): Response
+    #[Route('/{id}', name: 'app_produit_crud_supprimer', methods: ['POST'])]
+    public function supprimer(Request $request, Produit $produit, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$produit->getId(), $request->request->get('_token'))) {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+        if ($this->isCsrfTokenValid('supprimer'.$produit->getId(), $request->request->get('_token'))) {
             $entityManager->remove($produit);
             $entityManager->flush();
         }
