@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Categorie;
 use App\Repository\ProduitRepository;
 use App\Repository\CategorieRepository;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,5 +19,19 @@ class AccueilController extends AbstractController
             
         ]);
     }
+
+    #[Route('/souscategorie/{categorie}', name: 'app_souscategorie')]
+    public function souscategorie(Categorie $categorie): Response
+    { 
+        //dd($categorie);
+        return $this->render('accueil/souscategorie.html.twig', [
+            'categorie'=>$categorie,
+            
+        ]);
+    }
+
+
+    
+    
 
 }

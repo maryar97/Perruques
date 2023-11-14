@@ -112,9 +112,7 @@ class Categorie
         return $this;
     }
 
-    /**
-     * @return Collection<int, Produit>
-     */
+  
 
     /**
      * @return Collection<int, Produit>

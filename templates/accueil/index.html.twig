@@ -5,44 +5,62 @@
 {% endblock %}
 
 {% block body %}
-<!-- <img src="images/Perruques 360°/image50.jpeg" alt=""> -->
+	<!-- <img src="images/Perruques 360°/image50.jpeg" alt=""> -->
 
-<main class="container">
-	<section class="row">
-		<div class="col-12">
-			<h1>
-				Site e-commerce
-			</h1>
-			<p>
-				Bienvenue dans notre boutique
-			</p>
+	<main class="container-1">
+		<section class="row">
+			<div class="col-12">
+				<h1>
+					Site e-commerce
+				</h1>
+				<p>
+					Bienvenue dans notre boutique
+				</p>
+				<div>
+					<img src="/images/2.jpg" class="d-block w-100" alt="..."/></br>
+			</div>
 		</div>
-        <img src="{{ asset('images/imageaccueil.jpeg') }}" class="d-block w-100" alt="..."/></br> 
-		{% for categorie in categories %}
-			{% if categorie.parent == null %}
-					<h2>{{ categorie.nomcat }}</h2>
-						<div class="row">
-					{% for cat in categorie.categories %}
-                        <div class="col-4"> 
-						<div class="card" style="width: 15rem;">
-							<div class="card-body" >
-								<h8 class="card-title">{{ cat.nomcat }}</h8>
-                                <a href="{{path('list', {'id':cat.id,'sousrubriqueart':cat.nomcat})}}" class="btn btn-warning">Voir les produits</a>
-							</div>
-						</div>
-						</div>
-					{% endfor %}
-						</div>
-			{% endif %}
-		{% endfor %}
-		<!--<div class"col-12">
-			{{ dump() }}
-		</div>-->
-	</section>
-</main>
+ 
+		 
+		 
 
+			<div id="carouselExampleDark" class="carousel carousel-dark slide col-12 d-flex justify-content-center" data-bs-ride="carousel">
+						<div class="card" style="width: 18rem; border-radius: 50px; overflow: hidden;">
 
+				<div class="carousel-indicators">
 
-		
-		
-		{% endblock %}
+					<button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+					<button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+					<button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+				</div>
+				<div class="carousel-inner">
+					<div class="carousel-item active" data-bs-interval="2000">
+						<img src="/images/tissage.jpeg" class="d-block w-100" alt="...">
+						<div class="carousel-caption d-none d-md-block"></div>
+					</div>
+					<div class="carousel-item" data-bs-interval="2000">
+						<img src="/images/imageaccueil.jpeg" class="d-block w-100" alt="...">
+						<div class="carousel-caption d-none d-md-block"></div>
+					</div>
+					<div class="carousel-item">
+						<img src="images/acc.JPG" class="d-block w-100" alt="...">
+						<div class="carousel-caption d-none d-md-block"></div>
+					</div>
+				</div>
+				<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					<span class="visually-hidden">Previous</span>
+				</button>
+				<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+					<span class="visually-hidden">Next</span>
+				</button>
+			</div>
+		</div>
+			<!--<div class"col-12">
+													{{ dump() }}
+												</div>-->
+		</section>
+	</main>
+
+{% endblock %}

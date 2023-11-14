@@ -720,7 +720,7 @@ class AppFixtures extends Fixture
                ->setFournisseur($fournisseur2)
                ->setprixachat(25)
                ->setstock(5)
-               ->setphoto('lisseur.jpeg');
+               ->setphoto('lisseur1.jpeg');
                $manager->persist($produit5);
                $souscategorie3->addProduit($produit5);
 
@@ -898,7 +898,7 @@ class AppFixtures extends Fixture
                ->setFournisseur($fournisseur5)
                ->setprixachat(225)
                ->setstock(5)
-               ->setphoto('closeure1.jpg');
+               ->setphoto('closure1.jpg');
                $manager->persist($produit18);
                $souscategorie11->addProduit($produit18);
 
