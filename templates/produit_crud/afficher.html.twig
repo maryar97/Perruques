@@ -1,50 +1,62 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} Détails de {{ produit.libcourt}}{% endblock %}
+{% block title %}
+	Détails de
+	{{ produit.libcourt}}
+{% endblock %}
 
 {% block body %}
-    <h1> Détails de {{ produit.libcourt}}</h1>
+	<main class="container">
+		<section class="row">
+			<div class="col-12">
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ produit.id }}</td>
-            </tr>
-            <tr>
-                <th>Rubriqueart</th>
-                <td>{{ produit.rubriqueart }}</td>
-            </tr>
-            <tr>
-                <th>Sousrubriqueart</th>
-                <td>{{ produit.sousrubriqueart }}</td>
-            </tr>
-            <tr>
-                <th>Libcourt</th>
-                <td>{{ produit.libcourt }}</td>
-            </tr>
-            <tr>
-                <th>Liblong</th>
-                <td>{{ produit.liblong }}</td>
-            </tr>
-            <tr>
-                <th>Photo</th>
-                <td>{{ produit.photo }}</td>
-            </tr>
-            <tr>
-                <th>Prix</th>
-                <td>{{ produit.prixachat }}</td>
-            </tr>
-            <tr>
-                <th>Stock</th>
-                <td>{{ produit.stock }}</td>
-            </tr>
-        </tbody>
-    </table>
+				<h1>
+					Détails de
+					{{ produit.libcourt}}</h1>
 
-    <a href="{{ path('app_produit_crud_index') }}">Retour a la liste</a>
+				<table class="table">
+					<tbody>
+						<tr>
+							<th>Id</th>
+							<td>{{ produit.id }}</td>
+						</tr>
+						<tr>
+							<th>Catégorie</th>
+							<td>{{ produit.rubriqueart }}</td>
+						</tr>
+						<tr>
+							<th>Sous-Catégorie</th>
+							<td>{{ produit.sousrubriqueart }}</td>
+						</tr>
+						<tr>
+							<th>Produit</th>
+							<td>{{ produit.libcourt }}</td>
+						</tr>
+						<tr>
+							<th>Description</th>
+							<td>{{ produit.liblong }}</td>
+						</tr>
+						<tr>
+							<th>Photo</th>
+							<td>{{ produit.photo }}</td>
+						</tr>
+						<tr>
+							<th>Prix</th>
+							<td>{{ produit.prixachat }}</td>
+						</tr>
+						<tr>
+							<th>Unités de stock</th>
+							<td>{{ produit.stock }}</td>
+						</tr>
+					</tbody>
+				</table>
 
-    <a href="{{ path('app_produit_crud_modifier', {'id': produit.id}) }}">Modifier</a>
+				<a href="{{ path('app_produit_crud_index') }}">Retour a la liste</a> 
 
-    {{ include('produit_crud/_supprimer_form.html.twig') }}
+				<a href="{{ path('app_produit_crud_modifier', {'id': produit.id}) }}">Modifier</a>
+
+				{{ include('produit_crud/_supprimer_form.html.twig') }}
+			</div>
+		</section>
+	</main>
 {% endblock %}

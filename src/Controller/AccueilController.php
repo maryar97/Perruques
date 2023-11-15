@@ -17,6 +17,7 @@ class AccueilController extends AbstractController
                 return $this->render('accueil/index.html.twig', [
             'categories'=>$categorieRepository->findAll(),
             
+            
         ]);
     }
 

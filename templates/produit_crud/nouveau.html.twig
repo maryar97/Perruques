@@ -3,9 +3,17 @@
 {% block title %}Nouveau Produit{% endblock %}
 
 {% block body %}
-    <h1>Créer un nouveau Produit</h1>
+    <main class="container">
+	    <section class="row">
+		    <div class="col-12">
+                <h1>Créer un nouveau Produit</h1>
 
-    {{ include('produit_crud/_form.html.twig') }}
+                {{ include('produit_crud/_form.html.twig') }}
 
-    <a href="{{ path('app_produit_crud_index') }}">Retour a la liste</a>
+                <a href="{{ path('app_produit_crud_index') }}">Retour a la liste</a>
+            </div>
+        </section>
+    </main> 
+
+
 {% endblock %}

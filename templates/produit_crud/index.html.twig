@@ -1,21 +1,21 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Produit index{% endblock %}
+{% block title %}Produit{% endblock %}
 
 {% block body %}
-    <h1>Produit index</h1>
+    <h1>Produit</h1>
 
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Rubriqueart</th>
-                <th>Sousrubriqueart</th>
-                <th>Libcourt</th>
-                <th>Liblong</th>
+                <th>Catégorie</th>
+                <th>Sous-catégorie</th>
+                <th>Produit</th>
+                <th>Description</th>
                 <th>Photo</th>
                 <th>Prix</th>
-                <th>Stock</th>
+                <th>Unités de stock</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -43,5 +43,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_produit_crud_nouveau') }}">Créer un nouveau</a>
+<a href="{{ path('app_produit_crud_nouveau') }}"> <button type="submit" class="btn btn-danger btn-lg my-3"> Créer un nouveau  </button></a>
 {% endblock %}

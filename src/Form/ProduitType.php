@@ -9,18 +9,13 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class ProduitType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('rubriqueart', options:[ 
-                'label' => 'Rubrique article'
-            ])
-            ->add('sousrubriqueart', options:[
-                'label' => 'Nom'
-            ])
             ->add('categorie', EntityType::class, [
                 'class' => Categorie::class,
                 'choice_label' =>'nomcat',
@@ -31,24 +26,32 @@ class ProduitType extends AbstractType
                         ->where('c.parent IS NOT NULL')
                         ->orderBy('c.nomcat', 'ASC');
                 }
+
             ])
+
+            
             ->add('libcourt', options:[
-                'label' => 'Courte description'
+                'label' => 'Produit'
             ])
             ->add('liblong', options:[
                 'label' => 'Description'
             ])
-            ->add('photo', options:[
-                'label' => 'Photo'
-            ])
+            
             ->add('prixachat', options:[
                 'label' => 'Prix'
             ])
             ->add('stock', options:[
                 'label' => 'Unités en stock'
             ])
+            ->add('photo', options:[
+                'label' => 'Photo'
+            ])
            
-           
+           ->add('photo', FileType::class,[
+            'label' => 'Photo',
+            'multiple' => true,
+            'required' => false
+           ])
         ;
     }
 
