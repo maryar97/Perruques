@@ -9,8 +9,11 @@ use App\Repository\ProduitRepository;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\component\HttpFoundation\File\File;
 
 #[ORM\Entity(repositoryClass: ProduitRepository::class)]
+#[Vich\Uploadable]
 class Produit
 {
     #[ORM\Id]
@@ -18,28 +21,28 @@ class Produit
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $rubriqueart = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $sousrubriqueart = null;
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank(message: 'Le nom du produit ne peut pas être vide')]
     private ?string $libcourt = null;
 
-    #[ORM\Column(type: Types::TEXT)]
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $liblong = null;
 
-    #[ORM\Column(length: 100)]
+    #[ORM\Column(length: 100, nullable: true)]
     private ?string $reffou = null;
 
     
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $photo = null;
 
-    #[Vich\UploadableField(mapping: 'produit_photo', fileNameProperty: 'photo')]
-    private ?File $photoFille = null; 
+    #[Vich\UploadableField(mapping: 'products', fileNameProperty: 'photo')]
+    private ?File $photoFile = null; 
 
     #[ORM\Column]
     private ?int $prixachat = null;
@@ -49,11 +52,11 @@ class Produit
     
 
     #[ORM\ManyToOne(inversedBy: 'Produits')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private ?Fournisseur $fournisseur = null;
 
     #[ORM\ManyToOne(inversedBy: 'Produits')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private ?Categorie $categorie = null;
 
     #[ORM\OneToMany(mappedBy: 'Produit', targetEntity: Detailscommandes::class)]
@@ -156,7 +159,7 @@ class Produit
 
     public function setPhotoFile(?File $photoFile): void
     {
-        $this->photoFILE = $photoFile;
+        $this->photoFile = $photoFile;
 
     }
 

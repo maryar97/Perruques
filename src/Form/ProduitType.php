@@ -7,15 +7,16 @@ use App\Entity\Categorie;
 use App\Repository\CategorieRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class ProduitType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+        
             ->add('categorie', EntityType::class, [
                 'class' => Categorie::class,
                 'choice_label' =>'nomcat',
@@ -23,9 +24,16 @@ class ProduitType extends AbstractType
                 'query_builder' => function(CategorieRepository $cr)
                 {
                     return $cr->createQueryBuilder('c')
-                        ->where('c.parent IS NOT NULL')
+                        ->where('c.parent IS NULL')
                         ->orderBy('c.nomcat', 'ASC');
+                    
                 }
+
+            ])
+            
+
+            ->add('sousrubriqueart', options:[
+                'label' => 'Sous-catégorie'
 
             ])
 
@@ -44,12 +52,11 @@ class ProduitType extends AbstractType
                 'label' => 'Unités en stock'
             ])
     
-           ->add('photo', FileType::class,[
+           ->add('photoFile', VichImageType::class,[
             'label' => 'Photo',
-            'multiple' => true,
+            'mapped' => false,
             'required' => false
-           ])
-        ;
+           ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
