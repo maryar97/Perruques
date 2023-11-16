@@ -8,6 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 use App\Repository\ProduitRepository;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ProduitRepository::class)]
 class Produit
@@ -24,6 +25,7 @@ class Produit
     private ?string $sousrubriqueart = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: 'Le nom du produit ne peut pas être vide')]
     private ?string $libcourt = null;
 
     #[ORM\Column(type: Types::TEXT)]
@@ -35,6 +37,9 @@ class Produit
     
     #[ORM\Column(length: 255)]
     private ?string $photo = null;
+
+    #[Vich\UploadableField(mapping: 'produit_photo', fileNameProperty: 'photo')]
+    private ?File $photoFille = null; 
 
     #[ORM\Column]
     private ?int $prixachat = null;
@@ -142,6 +147,17 @@ class Produit
         $this->photo = $photo;
 
         return $this;
+    }
+
+    public function getPhotoFile(): ?File
+    {
+        return $this->photoFile;
+    }
+
+    public function setPhotoFile(?File $photoFile): void
+    {
+        $this->photoFILE = $photoFile;
+
     }
 
     

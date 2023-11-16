@@ -31,6 +31,10 @@ class ProduitCrudController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // On récupère les images
+            $produit = $form->get('photo')->getData();
+            dd($produit);
+
             $entityManager->persist($produit);
             $entityManager->flush();
 

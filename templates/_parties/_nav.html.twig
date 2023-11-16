@@ -38,30 +38,44 @@
 						<a class="dropdown-item" href="/souscategorie/6">LISSEUR CHAUFFANT</a>
 					</li>
 				</li>
-				
 			</ul>
-			<ul class="navbar-nav ms-auto mb-lg-0">
-			<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-			  <li class="nav-item">
-			     <a class"navco" href="/panier"> 
-				<button type="button" class="btn btn-light navco text-black">Panier( 0 )</button>
-			     </a>
-			  </li> &nbsp;
-			{% if app.user %}
-			  <li class="nav-item">
-			    <a class="navco" href="{{ path('app_logout')}}"> 
-					<button type="button" class="btn btn-light navco text-black"> Me déconnecter</button>
-					</a>
-				</li> &nbsp;
-				{% else %}
-				<li class="nav-item">
-				  <a class="navco" href="{{ path('app_login')}}">
-					<button type="button" class="btn btn-light navco text-black"> Me connecter</button>
-					</a>
-				  </li>
-				  {% endif %}
-			
 
-		</div>
-	</div>
-</nav>
+
+			<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+				{% if app.user %}
+					{% if is_granted('ROLE_ADMIN') %}
+						<li class="nav-item">
+							<a class="nav-link" href="{{ path('admin_index')}}">
+								Administration
+							</a>
+						</li>
+
+					{% endif %}
+
+					<li class="nav-item">
+						<a class="navco" href="{{ path('app_logout')}}">
+							<button type="button" class="btn btn-light navco text-black">
+								Me déconnecter</button>
+						</a>
+					</li>
+					&nbsp;
+				{% else %}
+					<li class="nav-item">
+						<a class="navco" href="{{ path('app_login')}}">
+							<button type="button" class="btn btn-light navco text-black">
+								Me connecter</button>
+						</a>
+					</li> &nbsp;
+				{% endif %}
+				<ul class="navbar-nav ms-auto mb-lg-0">
+					<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+						<li class="nav-item">
+							<a class"navco" href="/panier">
+								<button type="button" class="btn btn-light navco text-black">Panier( 0 )</button>
+							</a>
+						</li>
+						&nbsp;
+					</ul>
+				</div>
+			</div>
+		</nav>

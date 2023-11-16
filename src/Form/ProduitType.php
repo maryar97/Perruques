@@ -31,7 +31,7 @@ class ProduitType extends AbstractType
 
             
             ->add('libcourt', options:[
-                'label' => 'Produit'
+                'label' => 'Nom du produit'
             ])
             ->add('liblong', options:[
                 'label' => 'Description'
@@ -43,10 +43,7 @@ class ProduitType extends AbstractType
             ->add('stock', options:[
                 'label' => 'Unités en stock'
             ])
-            ->add('photo', options:[
-                'label' => 'Photo'
-            ])
-           
+    
            ->add('photo', FileType::class,[
             'label' => 'Photo',
             'multiple' => true,

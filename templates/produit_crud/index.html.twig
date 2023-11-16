@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Produit{% endblock %}
+{% block title %}Liste des produits{% endblock %}
 
 {% block body %}
-    <h1>Produit</h1>
+    <h1>Liste des produits</h1>
 
     <table class="table">
         <thead>
@@ -27,12 +27,13 @@
                 <td>{{ produit.sousrubriqueart }}</td>
                 <td>{{ produit.libcourt }}</td>
                 <td>{{ produit.liblong }}</td>
-                <td>{{ produit.photo }}</td>
+                <td><img src="/images/{{ produit.photo }}" class="card-img-top" alt="{{ produit.photo}}">
+</td>
                 <td>{{ produit.prixachat }}</td>
                 <td>{{ produit.stock }}</td>
                 <td>
-                    <a href="{{ path('app_produit_crud_afficher', {'id': produit.id}) }}">Afficher</a>
-                    <a href="{{ path('app_produit_crud_modifier', {'id': produit.id}) }}">Modifier</a>
+                    <a href="{{ path('app_produit_crud_afficher', {'id': produit.id}) }}" class=" btn-danger">Afficher</a> 
+                    <a href="{{ path('app_produit_crud_modifier', {'id': produit.id}) }}" class=" btn-danger">Modifier</a>
                 </td>
             </tr>
         {% else %}
