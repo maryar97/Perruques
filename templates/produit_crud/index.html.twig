@@ -32,8 +32,8 @@
                 <td>{{ produit.prixachat }}</td>
                 <td>{{ produit.stock }}</td>
                 <td>
-                    <a href="{{ path('app_produit_crud_afficher', {'id': produit.id}) }}" class=" btn-danger">Afficher</a> 
-                    <a href="{{ path('app_produit_crud_modifier', {'id': produit.id}) }}" class=" btn-danger">Modifier</a>
+                    <a href="{{ path('app_produit_crud_afficher', {'id': produit.id}) }}">Afficher</a> 
+                    <a href="{{ path('app_produit_crud_modifier', {'id': produit.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}
