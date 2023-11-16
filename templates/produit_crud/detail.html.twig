@@ -45,9 +45,9 @@
 
 
 					{% if produit.stock > 0 %}
-						<a href="#" class="btn btn-danger"> Ajouter au panier </a>
+						<a href="{{path('cart_add', {id: produit.id}) }}" class="btn btn-danger"> Ajouter au panier </a>
 					{% else %}
-						<p class="text-danger"> Temporairement en rupture de stock </p>
+						<p class="text-warning"> Temporairement en rupture de stock </p>
 					{% endif %}
 					
 				</p>

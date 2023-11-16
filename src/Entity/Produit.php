@@ -62,6 +62,9 @@ class Produit
     #[ORM\OneToMany(mappedBy: 'Produit', targetEntity: Detailscommandes::class)]
     private Collection $detailscommandes;
 
+    #[ORM\Column(nullable: true)]
+    private ?int $quantite = null;
+
     
 
    
@@ -239,6 +242,18 @@ class Produit
     public function setStock(int $stock): static
     {
         $this->stock = $stock;
+
+        return $this;
+    }
+
+    public function getQuantite(): ?int
+    {
+        return $this->quantite;
+    }
+
+    public function setQuantite(?int $quantite): static
+    {
+        $this->quantite = $quantite;
 
         return $this;
     }
