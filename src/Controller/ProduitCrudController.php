@@ -57,14 +57,12 @@ class ProduitCrudController extends AbstractController
     }
 
     #[Route('/detail/{id}', name: 'app_produit_crud_detail', methods: ['GET'])]
-    public function detail(Produit $produit, Categorie $categorie): Response
+    public function detail(Produit $id): Response
     {
         return $this->render('produit_crud/detail.html.twig', [ 
-            'produit' => $produit,
-            'categorie'=>$categorie,
-            'produits' => $produit,
-
-
+            'produit' => $id,
+            //'categorie'=>$categorie,
+            //'produits' => $produit,
         ]);
     }
 

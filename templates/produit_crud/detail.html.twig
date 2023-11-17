@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-	Détails de
+	
 	{{ produit.libcourt}}
 {% endblock %}
 
@@ -10,22 +10,15 @@
 		<section class="row">
 			<div class="col-12">
 				<h1>
-					Détails de
+					
 					{{ produit.libcourt}}
 				</h1>
 
 			</div>
 			<div class="col-6">
 				<div class="carousel-inner">
-					{% for produit in categorie.Produit %}
-						<img src="/images/{{ produit.photo }}" class="card-img-top" alt="{{ produit.photo}}"><article class="card h-100">
-							<div class="card-body">		
-								<a href="{{ path('app_produit_crud_detail', {'id':produit.id}) }}"> 
-								</a>
 
-							</div>
-						</article>
-					{% endfor %}
+					<img src="/images/{{ produit.photo }}" class="card-img-top" alt="{{ produit.photo}}">
 				</div>
 
 			</div>
@@ -37,31 +30,26 @@
 				<p>
 					{{ produit.liblong }}
 				</p>
-				
+
 				<p>
 					Prix :
 					{{ produit.prixachat }}£
 				</p>
 
 
-					{% if produit.stock > 0 %}
-						<a href="{{path('cart_add', {id: produit.id}) }}" class="btn btn-danger"> Ajouter au panier </a>
-					{% else %}
-						<p class="text-warning"> Temporairement en rupture de stock </p>
-					{% endif %}
-					
-				</p>
-			</div>
+				{% if produit.stock > 0 %}
+					<a href="{{path('cart_add', {id: produit.id}) }}" class="btn btn-danger">
+						Ajouter au panier
+					</a>
+				{% else %}
+					<p class="text-warning">
+						Temporairement en rupture de stock
+					</p>
+				{% endif %}
 
-			{# {% for produit in produits %}
-															    <div class="col-4">
-																	<div class="card"> 
-																		<img src="/images/{{ produit.photo }}" class="card-img-top" alt="{{ produit.photo}}"> 
-																	</div> 
-																</div> 						       
-												            {% endfor %} #}
-		</section>
-	</main>
+			</p>
+		</div>
 
-
+	</section>
+</main>
 {% endblock %}
