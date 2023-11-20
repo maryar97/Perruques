@@ -2,22 +2,28 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\Categorie;
+use App\Entity\Users;
+use App\Entity\Produit;
 use App\Entity\Commande;
+use App\Entity\Categorie;
+use App\Entity\Livraison;
 use App\Entity\Commercial;
 use App\Entity\Fournisseur;
-use App\Entity\Livraison;
-use App\Entity\Produit;
-use App\Entity\Users;
-use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use Doctrine\Bundle\FixturesBundle\Fixture;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class AppFixtures extends Fixture
 {
+    private $hasher;
+
+    public function __construct(UserPasswordHasherInterface $hasher){
+        $this->hasher = $hasher;
+    }
     public function load(ObjectManager $manager): void
     {
     
-        $fournisseur1 = new Fournisseur(); 
+        $fournisseur1 = new Fournisseur();
         $fournisseur1->setnomfou('Galbiati')
              ->setadrfou('32 rue winston churchill')
              ->setpostfou('60100')
@@ -195,8 +201,9 @@ class AppFixtures extends Fixture
 
         $users1 = new Users();
         $users1->setnom('Kouadio')
-            ->setprenom('Celestin')
-            ->setpassword(password_hash('password', PASSWORD_DEFAULT))
+            ->setprenom('Celestin');
+            $password = $this->hasher->hashPassword($users1, "Afpa1234");
+            $users1->setPassword($password)
             ->setsexe('M')
             ->setCommercial($commercial1)
             ->setemail('kouadiocelestin@live.fr')
@@ -211,8 +218,9 @@ class AppFixtures extends Fixture
 
         $users2 = new Users();
         $users2->setnom('Dembele')
-            ->setprenom('Romane')
-            ->setpassword(password_hash('password', PASSWORD_DEFAULT))
+            ->setprenom('Romane');
+            $password = $this->hasher->hashPassword($users2, "Afpa1234");
+            $users2->setPassword($password)
             ->setsexe('F')
             ->setCommercial($commercial2)
             ->setemail('dembeleromane@gmail.com')
@@ -227,8 +235,9 @@ class AppFixtures extends Fixture
 
         $users3 = new Users();
         $users3->setnom('Trottier')
-            ->setprenom('Amand')
-            ->setpassword(password_hash('password', PASSWORD_DEFAULT))
+            ->setprenom('Amand');
+           $password = $this->hasher->hashPassword($users3, "Afpa1234");
+            $users3->setPassword($password)
             ->setsexe('M')
             ->setCommercial($commercial4)
             ->setemail('trottieramand@live.fr')
@@ -243,8 +252,9 @@ class AppFixtures extends Fixture
 
         $users4 = new Users();
         $users4->setnom('Choquet')
-            ->setprenom('Eliane')
-            ->setpassword(password_hash('password', PASSWORD_DEFAULT))
+            ->setprenom('Eliane');
+           $password = $this->hasher->hashPassword($users4, "Afpa1234");
+            $users4->setPassword($password)
             ->setsexe('F')
             ->setCommercial($commercial3)
             ->setEmail('choqueteliane54@outlook.fr')
@@ -258,8 +268,9 @@ class AppFixtures extends Fixture
 
         $users5 = new Users();
         $users5->setnom('Lefeuvre')
-            ->setprenom('Mireille')
-            ->setpassword(password_hash('password', PASSWORD_DEFAULT))
+            ->setprenom('Mireille');
+           $password = $this->hasher->hashPassword($users5, "Afpa1234");
+            $users5->setPassword($password)
             ->setsexe('F')
             ->setCommercial($commercial6)
             ->setEmail('lefeuvremireille@gmail.com')
@@ -274,8 +285,9 @@ class AppFixtures extends Fixture
 
         $users6 = new Users();
         $users6->setnom('Jegou')
-            ->setprenom('Blanche')
-            ->setpassword(password_hash('password', PASSWORD_DEFAULT))
+            ->setprenom('Blanche');
+           $password = $this->hasher->hashPassword($users6, "Afpa1234");
+            $users6->setPassword($password)
             ->setsexe('F')
             ->setCommercial($commercial5)
             ->setEmail('jegoublanche@outlook.fr')
@@ -289,8 +301,9 @@ class AppFixtures extends Fixture
 
         $users7 = new Users();
         $users7->setnom('Dubois')
-            ->setprenom('Marie Josey')
-            ->setpassword(password_hash('password', PASSWORD_DEFAULT))
+            ->setprenom('Marie Josey');
+           $password = $this->hasher->hashPassword($users7, "Afpa1234");
+            $users7->setPassword($password)
             ->setsexe('F')
             ->setCommercial($commercial8)
             ->setEmail('duboismariejosey@yahoo.fr')
@@ -304,8 +317,9 @@ class AppFixtures extends Fixture
 
         $users8 = new Users();
         $users8->setnom('Daucourt')
-            ->setprenom('Sigolene')
-            ->setpassword(password_hash('password', PASSWORD_DEFAULT))
+            ->setprenom('Sigolene');
+           $password = $this->hasher->hashPassword($users8, "Afpa1234");
+            $users8->setPassword($password)
             ->setsexe('F')
             ->setCommercial($commercial7)
             ->setEmail('daucourtsigolene@yahoo.fr')
@@ -319,8 +333,9 @@ class AppFixtures extends Fixture
 
         $users9 = new Users();
         $users9->setnom('Affre')
-            ->setprenom('Lou')
-            ->setpassword(password_hash('password', PASSWORD_DEFAULT))
+            ->setprenom('Lou');
+           $password = $this->hasher->hashPassword($users9, "Afpa1234");
+            $users9->setPassword($password)
             ->setsexe('F')
             ->setCommercial($commercial10)
             ->setEmail('affrelou@yahoo.fr')
@@ -334,8 +349,9 @@ class AppFixtures extends Fixture
 
         $users10 = new Users();
         $users10->setnom('Bureau')
-            ->setprenom('Claudine')
-            ->setpassword(password_hash('password', PASSWORD_DEFAULT))
+            ->setprenom('Claudine');
+           $password = $this->hasher->hashPassword($users10, "Afpa1234");
+            $users10->setPassword($password)
             ->setsexe('F')
             ->setCommercial($commercial9)
             ->setEmail('bureauclaudine4@live.fr')
@@ -349,8 +365,9 @@ class AppFixtures extends Fixture
 
         $users11 = new Users();
         $users11->setnom('Chapuis')
-            ->setprenom('Deborah')
-            ->setpassword(password_hash('password', PASSWORD_DEFAULT))
+            ->setprenom('Deborah');
+           $password = $this->hasher->hashPassword($users11, "Afpa1234");
+            $users11->setPassword($password)
             ->setsexe('F')
             ->setCommercial($commercial1)
             ->setEmail('chapuisdeborah@live.fr')
@@ -364,8 +381,9 @@ class AppFixtures extends Fixture
 
         $users12 = new Users();
         $users12->setnom('Cuvillier')
-            ->setprenom('Marie')
-            ->setpassword(password_hash('password', PASSWORD_DEFAULT))
+            ->setprenom('Marie');
+           $password = $this->hasher->hashPassword($users12, "Afpa1234");
+            $users12->setPassword($password)
             ->setsexe('F')
             ->setCommercial($commercial2)
             ->setEmail('cuvilliermarie@gmail.com')
@@ -379,8 +397,9 @@ class AppFixtures extends Fixture
 
         $users13 = new Users();
         $users13->setnom('Garnier')
-            ->setprenom('Clara')
-            ->setpassword(password_hash('password', PASSWORD_DEFAULT))
+            ->setprenom('Clara');
+           $password = $this->hasher->hashPassword($users13, "Afpa1234");
+            $users13->setPassword($password)
             ->setsexe('F')
             ->setCommercial($commercial3)
             ->setEmail('garnierclara@gmail.com')
@@ -394,8 +413,9 @@ class AppFixtures extends Fixture
 
         $users14 = new Users();
         $users14->setnom('LeMahieu')
-            ->setprenom('Peggy')
-            ->setpassword(password_hash('password', PASSWORD_DEFAULT))
+            ->setprenom('Peggy');
+           $password = $this->hasher->hashPassword($users14, "Afpa1234");
+            $users14->setPassword($password)
             ->setsexe('F')
             ->setCommercial($commercial4)
             ->setEmail('lemahieupeggy@outlook.fr')
@@ -409,8 +429,9 @@ class AppFixtures extends Fixture
 
         $users15 = new Users();
         $users15->setnom('Anouilh')
-            ->setprenom('Celine')
-            ->setpassword(password_hash('password', PASSWORD_DEFAULT))
+            ->setprenom('Celine');
+           $password = $this->hasher->hashPassword($users15, "Afpa1234");
+            $users15->setPassword($password)
             ->setsexe('F')
             ->setCommercial($commercial5)
             ->setEmail('anouilhceline@outlook.fr')
@@ -468,6 +489,8 @@ class AppFixtures extends Fixture
         $commande1->setdatecom(new \DateTimeImmutable())
                ->settotalcom(2)
                ->setdescpcom('bgng')
+               ->setadrlivraison('')
+               ->setadrfact('')
                ->setidpaiement(1)
                ->setdatepaiement(new \DateTimeImmutable())
                ->setdescppaiement('Diféré')
@@ -485,6 +508,8 @@ class AppFixtures extends Fixture
         $commande2->setdatecom(new \DateTimeImmutable())
                ->settotalcom(2)
                ->setdescpcom('bgng')
+               ->setadrlivraison('')
+               ->setadrfact('')
                ->setidpaiement(2)
                ->setdatepaiement(new \DateTimeImmutable())
                ->setdescppaiement('Diféré')
@@ -502,6 +527,8 @@ class AppFixtures extends Fixture
         $commande3->setdatecom(new \DateTimeImmutable())
                ->settotalcom(3)
                ->setdescpcom('bgng')
+               ->setadrlivraison('')
+               ->setadrfact('')
                ->setidpaiement(3)
                ->setdatepaiement(new \DateTimeImmutable())
                ->setdescppaiement('Diféré')
@@ -519,6 +546,8 @@ class AppFixtures extends Fixture
         $commande4->setdatecom(new \DateTimeImmutable())
                ->settotalcom(1)
                ->setdescpcom('bgng')
+               ->setadrlivraison('')
+               ->setadrfact('')
                ->setidpaiement(4)
                ->setdatepaiement(new \DateTimeImmutable())
                ->setdescppaiement('Comptant')
@@ -536,6 +565,8 @@ class AppFixtures extends Fixture
         $commande5->setdatecom(new \DateTimeImmutable())
                ->settotalcom(1)
                ->setdescpcom('bgng')
+               ->setadrlivraison('')
+               ->setadrfact('')
                ->setidpaiement(5)
                ->setdatepaiement(new \DateTimeImmutable())
                ->setdescppaiement('Comptant')
@@ -546,6 +577,7 @@ class AppFixtures extends Fixture
                ->setfacturetotaltva(104)
                ->setfacturetotalht(564)
                ->setLivraison($livraison1)
+               ->setadrlivraison('')
                ->setUsers($users5);
                $manager->persist($commande5);
 
@@ -553,6 +585,8 @@ class AppFixtures extends Fixture
         $commande6->setdatecom(new \DateTimeImmutable())
                ->settotalcom(2)
                ->setdescpcom('bgng')
+               ->setadrlivraison('')
+               ->setadrfact('')
                ->setidpaiement(6)
                ->setdatepaiement(new \DateTimeImmutable())
                ->setdescppaiement('Comptant')
@@ -742,7 +776,7 @@ class AppFixtures extends Fixture
         $produit7 = new Produit();
         $produit7->setrubriqueart('Perruques')
                ->setsousrubriqueart('Carré plongeant')
-               ->setlibcourt('Bobo wig front lace 13*4 raide noir standard. ')
+               ->setlibcourt('Bobo wig front lace 13*4 raide noir standard ')
                ->setliblong('La dentelle HD est un matériau de dentelle royale également appelé dentelle suisse, qui est invisible lorsqu elle est appliquée sur le cuir chevelu. Cela garantit que le porteur de la perruque peut avoir une racine des cheveux exposée, ce qui semble très naturel et rend la dentelle le long de la racine des cheveux hautement indétectable.')
                ->setreffou('fournisseur8')
                ->setFournisseur($fournisseur8)
@@ -974,6 +1008,7 @@ class AppFixtures extends Fixture
     }
 
 }
+
 
 
 

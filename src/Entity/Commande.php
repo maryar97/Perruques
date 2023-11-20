@@ -67,6 +67,12 @@ class Commande
     #[ORM\Column(length: 20, nullable:true)]
     private ?string $reference = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $adrlivraison = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $adrfact = null;
+
     public function __construct()
     {
         $this->detailscommandes = new ArrayCollection();
@@ -287,6 +293,30 @@ class Commande
     public function setReference(string $reference): static
     {
         $this->reference = $reference;
+
+        return $this;
+    }
+
+    public function getAdrlivraison(): ?string
+    {
+        return $this->adrlivraison;
+    }
+
+    public function setAdrlivraison(string $adrlivraison): static
+    {
+        $this->adrlivraison = $adrlivraison;
+
+        return $this;
+    }
+
+    public function getAdrfact(): ?string
+    {
+        return $this->adrfact;
+    }
+
+    public function setAdrfact(string $adrfact): static
+    {
+        $this->adrfact = $adrfact;
 
         return $this;
     }
