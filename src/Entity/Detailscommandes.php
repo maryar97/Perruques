@@ -27,7 +27,6 @@ class Detailscommandes
     #[ORM\JoinColumn(nullable: false)]
     private $Produit;
 
-
     public function __construct()
     {
         $this->factures = new ArrayCollection();
@@ -81,7 +80,7 @@ class Detailscommandes
         return $this;
     }
 
-
+    
 
   
 }

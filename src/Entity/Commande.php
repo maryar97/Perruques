@@ -19,8 +19,8 @@ class Commande
     #[ORM\Column(type: Types::DATETIME_IMMUTABLE)]
     private ?\DateTimeImmutable $datecom = null;
 
-    #[ORM\Column(type: Types::DECIMAL, precision: 7, scale: 2)]
-    private ?string $totalcom = null;
+    #[ORM\Column]
+    private ?int $totalcom = null;
 
     
 
@@ -39,14 +39,14 @@ class Commande
     #[ORM\Column(type: Types::DATETIME_IMMUTABLE)]
     private ?\DateTimeImmutable $facturedate = null;
 
-    #[ORM\Column]
-    private ?float $facturetotalttc = null;
+    #[ORM\Column(type: Types::DECIMAL, precision: 7, scale: 2)]
+    private ?string $facturetotalttc = null;
 
-    #[ORM\Column]
-    private ?float $facturetotaltva = null;
+    #[ORM\Column(type: Types::DECIMAL, precision: 7, scale: 2)]
+    private ?string $facturetotaltva = null;
 
-    #[ORM\Column]
-    private ?float $facturetotalht = null;
+    #[ORM\Column(type: Types::DECIMAL, precision: 7, scale: 2)]
+    private ?string $facturetotalht = null;
 
 
     #[ORM\ManyToOne(targetEntity: Users::class)]
@@ -164,36 +164,36 @@ class Commande
         return $this;
     }
 
-    public function getFacturetotalttc(): ?float
+    public function getFacturetotalttc(): ?string
     {
         return $this->facturetotalttc;
     }
 
-    public function setFacturetotalttc(float $facturetotalttc): self
+    public function setFacturetotalttc(string $facturetotalttc): self
     {
         $this->facturetotalttc = $facturetotalttc;
 
         return $this;
     }
 
-    public function getFacturetotaltva(): ?float
+    public function getFacturetotaltva(): ?string
     {
         return $this->facturetotaltva;
     }
 
-    public function setFacturetotaltva(float $facturetotaltva): self
+    public function setFacturetotaltva(string $facturetotaltva): self
     {
         $this->facturetotaltva = $facturetotaltva;
 
         return $this;
     }
 
-    public function getFacturetotalht(): ?float
+    public function getFacturetotalht(): ?string
     {
         return $this->facturetotalht;
     }
 
-    public function setFacturetotalht(float $facturetotalht): self
+    public function setFacturetotalht(string $facturetotalht): self
     {
         $this->facturetotalht = $facturetotalht;
 

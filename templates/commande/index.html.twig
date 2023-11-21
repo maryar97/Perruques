@@ -3,18 +3,88 @@
 {% block title %}Hello CommandeController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+<div class='container'>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/home/mary/Documents/perruque/src/Controller/CommandeController.php'|file_link(0) }}">src/Controller/CommandeController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/home/mary/Documents/perruque/templates/commande/index.html.twig'|file_link(0) }}">templates/commande/index.html.twig</a></code></li>
-    </ul>
-</div>
+
+<table class="table";
+                    <thead>
+                        <tr>
+                            <th>Produit</th>
+                            <th>Prix</th>
+                            <th>Quantité</th>
+                            <th>Total</th>
+                            {# <th>Action</th> #}
+                        </tr>
+                    </thead>
+                    <tbody>
+                    
+
+
+
+
+                        {% for element in data %}
+                            <tr>
+                                <td>{{ element.produit.sousrubriqueart }}</td>
+                                <td>{{ element.produit.prixachat }} €</td>
+                                <td>{{ element.quantite }}</td>
+                                <td>{{ element.quantite * element.produit.prixachat }} €</td>
+                                
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="5">Votre panier est vide</td>
+                            </tr>    
+                        {% endfor %}
+                    </tbody>
+                    <tfoot>
+
+                       
+
+                       
+                         <tr>
+                            <td colspan="3">tva</td>
+                            
+                            <td>{{ Facturetotaltva  }} %</td>
+                                
+                          </tr>
+
+                           <tr>
+                            <td colspan="3">sous Total</td>
+                            
+                            <td>{{ pttc }} €</td>
+
+                                
+                          </tr>
+                        <tr>
+                            <td colspan="3">frais de port</td>
+                            {% if pht<300 %}
+                            <td>{{ fdp }} €</td>
+                            
+                            {% endif %}
+
+                            {% if pht>300 %}
+                            <td> 0 €</td>
+                            
+                            {% endif %}
+                              </tr>
+
+
+
+                        <tr>                          
+                            
+                             <td colspan="3">Total</td>
+                            
+                            <td>{{ total }}
+                            
+                            </td>
+                            
+                        </tr>
+                    </tfoot>
+
+                </table>
+                    <a href="{{ path('app_accueil' ) }}" class="btn btn-danger">modifier</a>
+
+                
+                </div>
 {% endblock %}
