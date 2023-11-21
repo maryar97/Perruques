@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\DetailscommandesRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: DetailscommandesRepository::class)]
@@ -13,7 +15,7 @@ class Detailscommandes
     private ?int $quantite = null;
 
     #[ORM\Column]
-    private ?int $prix = null;
+    private ?int $prixachat = null;
 
     #[ORM\Id]
     #[ORM\ManyToOne(targetEntity: Commande::class, inversedBy: 'commandeDetails')]
@@ -24,6 +26,12 @@ class Detailscommandes
     #[ORM\ManyToOne(targetEntity: Produit::class, inversedBy: 'commandeDetails')]
     #[ORM\JoinColumn(nullable: false)]
     private $Produit;
+
+
+    public function __construct()
+    {
+        $this->factures = new ArrayCollection();
+    }
 
     public function getQuantite(): ?int
     {
@@ -37,14 +45,14 @@ class Detailscommandes
         return $this;
     }
 
-    public function getPrix(): ?int
+    public function getPrixAchat(): ?int
     {
-        return $this->prix;
+        return $this->prixachat;
     }
 
-    public function setPrix(int $prix): static
+    public function setPrixAchat(int $prixachat): static
     {
-        $this->prix = $prix;
+        $this->prixachat = $prixachat;
 
         return $this;
     }
@@ -72,4 +80,8 @@ class Detailscommandes
 
         return $this;
     }
+
+
+
+  
 }

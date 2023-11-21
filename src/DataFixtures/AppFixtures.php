@@ -115,97 +115,12 @@ class AppFixtures extends Fixture
              ->settelfou('0622514587');
              $manager->persist($fournisseur10);
 
-
-        $commercial1 = new Commercial();
-        $commercial1->setnomcomm('Poirot')
-            ->setprenomcomm('Penelope')
-            ->setmailcomm('poirotpene@live.fr')
-            ->settauxcomm('10')
-            ->settelcomm('0785964125');
-            $manager->persist($commercial1);
-
-        $commercial2 = new Commercial();
-        $commercial2->setnomcomm('Minta')
-            ->setprenomcomm('grâce')
-            ->setmailcomm('graceminta@gmail.com')
-            ->settauxcomm('10')
-            ->settelcomm('0384125698');
-            $manager->persist($commercial2);
-
-
-        $commercial3 = new Commercial();
-        $commercial3->setnomcomm('Kouadio')
-            ->setprenomcomm('Jean')
-            ->setmailcomm('jeankouadio1@outlook.fr')
-            ->settauxcomm('10')
-            ->settelcomm('0162345789');
-            $manager->persist($commercial3);
-
-        $commercial4 = new Commercial();
-        $commercial4->setnomcomm('Leroy')
-            ->setprenomcomm('Christophe')
-            ->setmailcomm('christopheleroy@gmail.fr')
-            ->settauxcomm('15')
-            ->settelcomm('0365489562');
-            $manager->persist($commercial4);
-
-
-        $commercial5 = new Commercial();
-        $commercial5->setnomcomm('Picolo')
-            ->setprenomcomm('mohammed')
-            ->setmailcomm('mohammed125@live.fr')
-            ->settauxcomm('12')
-            ->settelcomm('0345869125');
-            $manager->persist($commercial5);
-
-        $commercial6 = new Commercial();
-        $commercial6->setnomcomm('Poisson')
-            ->setprenomcomm('Serge')
-            ->setmailcomm('poissonserge25@gmail.com')
-            ->settauxcomm('10')
-            ->settelcomm('0322548756');
-            $manager->persist($commercial6);
-
-        $commercial7 = new Commercial();
-        $commercial7->setnomcomm('Léonard')
-            ->setprenomcomm('Celice')
-            ->setmailcomm('leonardcelice@hootmail.fr')
-            ->settauxcomm('12')
-            ->settelcomm('0322965412');
-            $manager->persist($commercial7);
-
-        $commercial8 = new Commercial();
-        $commercial8->setnomcomm('Compere')
-            ->setprenomcomm('Isaïe')
-            ->setmailcomm('compereisaie@live.fr')
-            ->settauxcomm('10')
-            ->settelcomm('0156324586');
-            $manager->persist($commercial8);
-
-        $commercial9 = new Commercial();
-        $commercial9->setnomcomm('Cerfbeer')
-            ->setprenomcomm('Natanaël')
-            ->setmailcomm('cerfbeernatanael@gmail.com')
-            ->settauxcomm('10')
-            ->settelcomm('0154879652');
-            $manager->persist($commercial9);
-
-        $commercial10 = new Commercial();
-        $commercial10->setnomcomm('Saunier')
-            ->setprenomcomm('Remy')
-            ->setmailcomm('saunierremy@gmail.com')
-            ->settauxcomm('15')
-            ->settelcomm('0147856325');
-            $manager->persist($commercial10);
-
-
         $users1 = new Users();
         $users1->setnom('Kouadio')
             ->setprenom('Celestin');
             $password = $this->hasher->hashPassword($users1, "Afpa1234");
             $users1->setPassword($password)
             ->setsexe('M')
-            ->setCommercial($commercial1)
             ->setemail('kouadiocelestin@live.fr')
             ->setadresse('2 rue Cazotte')
             ->setcodepostal('75018')
@@ -222,7 +137,6 @@ class AppFixtures extends Fixture
             $password = $this->hasher->hashPassword($users2, "Afpa1234");
             $users2->setPassword($password)
             ->setsexe('F')
-            ->setCommercial($commercial2)
             ->setemail('dembeleromane@gmail.com')
             ->setadresse('36 avenue De Clichy')
             ->setcodepostal('75018')
@@ -239,7 +153,6 @@ class AppFixtures extends Fixture
            $password = $this->hasher->hashPassword($users3, "Afpa1234");
             $users3->setPassword($password)
             ->setsexe('M')
-            ->setCommercial($commercial4)
             ->setemail('trottieramand@live.fr')
             ->setadresse('88 boulevard Rochechouart')
             ->setcodepostal('80080')
@@ -256,7 +169,6 @@ class AppFixtures extends Fixture
            $password = $this->hasher->hashPassword($users4, "Afpa1234");
             $users4->setPassword($password)
             ->setsexe('F')
-            ->setCommercial($commercial3)
             ->setEmail('choqueteliane54@outlook.fr')
             ->setadresse('98 rue Caulaincourt')
             ->setcodepostal('60100')
@@ -272,7 +184,6 @@ class AppFixtures extends Fixture
            $password = $this->hasher->hashPassword($users5, "Afpa1234");
             $users5->setPassword($password)
             ->setsexe('F')
-            ->setCommercial($commercial6)
             ->setEmail('lefeuvremireille@gmail.com')
             ->setadresse('128 boulevard De Clichy')
             ->setcodepostal('75018')
@@ -289,7 +200,6 @@ class AppFixtures extends Fixture
            $password = $this->hasher->hashPassword($users6, "Afpa1234");
             $users6->setPassword($password)
             ->setsexe('F')
-            ->setCommercial($commercial5)
             ->setEmail('jegoublanche@outlook.fr')
             ->setadresse('52 boulevard Barbes')
             ->setcodepostal('75018')
@@ -305,7 +215,6 @@ class AppFixtures extends Fixture
            $password = $this->hasher->hashPassword($users7, "Afpa1234");
             $users7->setPassword($password)
             ->setsexe('F')
-            ->setCommercial($commercial8)
             ->setEmail('duboismariejosey@yahoo.fr')
             ->setadresse('6 boulevard de Clichy')
             ->setcodepostal('75018')
@@ -321,7 +230,6 @@ class AppFixtures extends Fixture
            $password = $this->hasher->hashPassword($users8, "Afpa1234");
             $users8->setPassword($password)
             ->setsexe('F')
-            ->setCommercial($commercial7)
             ->setEmail('daucourtsigolene@yahoo.fr')
             ->setadresse('112 boulevard De La Chapelle')
             ->setcodepostal('94110')
@@ -337,7 +245,6 @@ class AppFixtures extends Fixture
            $password = $this->hasher->hashPassword($users9, "Afpa1234");
             $users9->setPassword($password)
             ->setsexe('F')
-            ->setCommercial($commercial10)
             ->setEmail('affrelou@yahoo.fr')
             ->setadresse('60 rue De Torcy')
             ->setcodepostal('75018')
@@ -353,7 +260,6 @@ class AppFixtures extends Fixture
            $password = $this->hasher->hashPassword($users10, "Afpa1234");
             $users10->setPassword($password)
             ->setsexe('F')
-            ->setCommercial($commercial9)
             ->setEmail('bureauclaudine4@live.fr')
             ->setadresse('280 boulevard Michelet ')
             ->setcodepostal('13008')
@@ -369,7 +275,6 @@ class AppFixtures extends Fixture
            $password = $this->hasher->hashPassword($users11, "Afpa1234");
             $users11->setPassword($password)
             ->setsexe('F')
-            ->setCommercial($commercial1)
             ->setEmail('chapuisdeborah@live.fr')
             ->setadresse('29 rue Desire Pellaprat')
             ->setcodepostal('13008')
@@ -385,7 +290,6 @@ class AppFixtures extends Fixture
            $password = $this->hasher->hashPassword($users12, "Afpa1234");
             $users12->setPassword($password)
             ->setsexe('F')
-            ->setCommercial($commercial2)
             ->setEmail('cuvilliermarie@gmail.com')
             ->setadresse('4 rue des Recolettes ')
             ->setcodepostal('13001')
@@ -401,7 +305,6 @@ class AppFixtures extends Fixture
            $password = $this->hasher->hashPassword($users13, "Afpa1234");
             $users13->setPassword($password)
             ->setsexe('F')
-            ->setCommercial($commercial3)
             ->setEmail('garnierclara@gmail.com')
             ->setadresse('39 rue Saint Remi')
             ->setcodepostal('33000')
@@ -417,7 +320,6 @@ class AppFixtures extends Fixture
            $password = $this->hasher->hashPassword($users14, "Afpa1234");
             $users14->setPassword($password)
             ->setsexe('F')
-            ->setCommercial($commercial4)
             ->setEmail('lemahieupeggy@outlook.fr')
             ->setadresse('52 rue Croix de Seguey')
             ->setcodepostal('33000')
@@ -433,7 +335,6 @@ class AppFixtures extends Fixture
            $password = $this->hasher->hashPassword($users15, "Afpa1234");
             $users15->setPassword($password)
             ->setsexe('F')
-            ->setCommercial($commercial5)
             ->setEmail('anouilhceline@outlook.fr')
             ->setadresse('7 rue du Palais Gallien')
             ->setcodepostal('33000')
@@ -450,155 +351,21 @@ class AppFixtures extends Fixture
                 ->setmodelivraison('Colossimo');
                 $manager->persist($livraison1);
 
-        $livraison2 = new Livraison();
-        $livraison2->setlivrdate(new \DateTimeImmutable())
-                ->setlivraisondescp('hhgh')
-                ->setIdUsers(6)
-                ->setmodelivraison('Chronopost');
-                $manager->persist($livraison2);
-
-        $livraison3 = new Livraison();
-        $livraison3->setlivrdate(new \DateTimeImmutable())
-                ->setlivraisondescp('hhgh')
-                ->setIdUsers(1)
-                ->setmodelivraison('Mondial relay');
-                $manager->persist($livraison3);
-
-        $livraison4 = new Livraison();
-        $livraison4->setlivrdate(new \DateTimeImmutable())
-                ->setlivraisondescp('hhgh')
-                ->setIdUsers(5)
-                ->setmodelivraison('Mondial relay');
-                $manager->persist($livraison4);
-
-        $livraison5 = new Livraison();
-        $livraison5->setlivrdate(new \DateTimeImmutable())
-                ->setlivraisondescp('hhgh')
-                ->setIdUsers(4)
-                ->setmodelivraison('Colossimo');
-                $manager->persist($livraison5);
-
-        $livraison6 = new Livraison();
-        $livraison6->setlivrdate(new \DateTimeImmutable())
-                ->setlivraisondescp('hhgh')
-                ->setIdUsers(2)
-                ->setmodelivraison('Chronopost');
-                $manager->persist($livraison6);
 
         $commande1 = new Commande();
         $commande1->setdatecom(new \DateTimeImmutable())
                ->settotalcom(2)
-               ->setdescpcom('bgng')
                ->setadrlivraison('')
                ->setadrfact('')
                ->setidpaiement(1)
                ->setdatepaiement(new \DateTimeImmutable())
                ->setdescppaiement('Diféré')
                ->setmodepaiement('Carte bancaire')
-               ->setidfacture(4521)
                ->setfacturedate(new \DateTimeImmutable())
                ->setfacturetotalttc(124)
                ->setfacturetotaltva(104)
-               ->setfacturetotalht(564)
-               ->setLivraison($livraison1)
-               ->setUsers($users1);
+               ->setfacturetotalht(564);
                $manager->persist($commande1);
-
-        $commande2 = new Commande();
-        $commande2->setdatecom(new \DateTimeImmutable())
-               ->settotalcom(2)
-               ->setdescpcom('bgng')
-               ->setadrlivraison('')
-               ->setadrfact('')
-               ->setidpaiement(2)
-               ->setdatepaiement(new \DateTimeImmutable())
-               ->setdescppaiement('Diféré')
-               ->setmodepaiement('carte bancaire')
-               ->setidfacture(4521)
-               ->setfacturedate(new \DateTimeImmutable())
-               ->setfacturetotalttc(124)
-               ->setfacturetotaltva(104)
-               ->setfacturetotalht(564)
-               ->setLivraison($livraison1)
-               ->setUsers($users2);
-               $manager->persist($commande2);
-
-        $commande3 = new Commande();
-        $commande3->setdatecom(new \DateTimeImmutable())
-               ->settotalcom(3)
-               ->setdescpcom('bgng')
-               ->setadrlivraison('')
-               ->setadrfact('')
-               ->setidpaiement(3)
-               ->setdatepaiement(new \DateTimeImmutable())
-               ->setdescppaiement('Diféré')
-               ->setmodepaiement('Carte bancaire')
-               ->setidfacture(4521)
-               ->setfacturedate(new \DateTimeImmutable())
-               ->setfacturetotalttc(124)
-               ->setfacturetotaltva(104)
-               ->setfacturetotalht(564)
-               ->setLivraison($livraison1)
-               ->setUsers($users3);
-               $manager->persist($commande3);
-
-        $commande4 = new Commande();
-        $commande4->setdatecom(new \DateTimeImmutable())
-               ->settotalcom(1)
-               ->setdescpcom('bgng')
-               ->setadrlivraison('')
-               ->setadrfact('')
-               ->setidpaiement(4)
-               ->setdatepaiement(new \DateTimeImmutable())
-               ->setdescppaiement('Comptant')
-               ->setmodepaiement('Carte bancaire')
-               ->setidfacture(4521)
-               ->setfacturedate(new \DateTimeImmutable())
-               ->setfacturetotalttc(124)
-               ->setfacturetotaltva(104)
-               ->setfacturetotalht(564)
-               ->setLivraison($livraison1)
-               ->setUsers($users4);
-               $manager->persist($commande4);
-
-        $commande5 = new Commande();
-        $commande5->setdatecom(new \DateTimeImmutable())
-               ->settotalcom(1)
-               ->setdescpcom('bgng')
-               ->setadrlivraison('')
-               ->setadrfact('')
-               ->setidpaiement(5)
-               ->setdatepaiement(new \DateTimeImmutable())
-               ->setdescppaiement('Comptant')
-               ->setmodepaiement('Carte bancaire')
-               ->setidfacture(4521)
-               ->setfacturedate(new \DateTimeImmutable())
-               ->setfacturetotalttc(124)
-               ->setfacturetotaltva(104)
-               ->setfacturetotalht(564)
-               ->setLivraison($livraison1)
-               ->setadrlivraison('')
-               ->setUsers($users5);
-               $manager->persist($commande5);
-
-        $commande6 = new Commande();
-        $commande6->setdatecom(new \DateTimeImmutable())
-               ->settotalcom(2)
-               ->setdescpcom('bgng')
-               ->setadrlivraison('')
-               ->setadrfact('')
-               ->setidpaiement(6)
-               ->setdatepaiement(new \DateTimeImmutable())
-               ->setdescppaiement('Comptant')
-               ->setmodepaiement('Carte bancaire')
-               ->setidfacture(4521)
-               ->setfacturedate(new \DateTimeImmutable())
-               ->setfacturetotalttc(124)
-               ->setfacturetotaltva(104)
-               ->setfacturetotalht(564)
-               ->setLivraison($livraison1)
-               ->setUsers($users6);
-               $manager->persist($commande6);
 
 
         $categorie1 = new Categorie();
@@ -1004,7 +771,6 @@ class AppFixtures extends Fixture
                $souscategorie12->addProduit($produit23);
                $manager->flush();
 
-      
     }
 
 }

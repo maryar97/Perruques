@@ -22,8 +22,7 @@ class Commande
     #[ORM\Column(type: Types::DECIMAL, precision: 7, scale: 2)]
     private ?string $totalcom = null;
 
-    #[ORM\Column(type: Types::TEXT)]
-    private ?string $descpcom = null;
+    
 
     #[ORM\Column]
     private ?int $idpaiement = null;
@@ -36,9 +35,6 @@ class Commande
 
     #[ORM\Column(length: 100)]
     private ?string $modepaiement = null;
-
-    #[ORM\Column]
-    private ?int $idfacture = null;
 
     #[ORM\Column(type: Types::DATETIME_IMMUTABLE)]
     private ?\DateTimeImmutable $facturedate = null;
@@ -54,24 +50,19 @@ class Commande
 
 
     #[ORM\ManyToOne(targetEntity: Users::class)]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Users $Users = null;
-
-    #[ORM\ManyToOne(inversedBy: 'Commande')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Livraison $livraison = null;
+    #[ORM\JoinColumn(nullable: true)]
+    private ?Users $Users = null; 
 
     #[ORM\OneToMany(mappedBy: 'Commande', targetEntity: Detailscommandes::class, orphanRemoval: true)]
     private Collection $detailscommandes;
 
-    #[ORM\Column(length: 20, nullable:true)]
-    private ?string $reference = null;
 
     #[ORM\Column(length: 255)]
     private ?string $adrlivraison = null;
 
     #[ORM\Column(length: 255)]
     private ?string $adrfact = null;
+
 
     public function __construct()
     {
@@ -110,17 +101,7 @@ class Commande
         return $this;
     }
 
-    public function getDescpcom(): ?string
-    {
-        return $this->descpcom;
-    }
-
-    public function setDescpcom(string $descpcom): self
-    {
-        $this->descpcom = $descpcom;
-
-        return $this;
-    }
+    
 
     public function getIdpaiement(): ?int
     {
@@ -170,17 +151,6 @@ class Commande
         return $this;
     }
 
-    public function getIdfacture(): ?int
-    {
-        return $this->idfacture;
-    }
-
-    public function setIdfacture(int $idfacture): self
-    {
-        $this->idfacture = $idfacture;
-
-        return $this;
-    }
 
     public function getFacturedate(): ?\DateTimeImmutable
     {
@@ -243,18 +213,7 @@ class Commande
         return $this;
     }
 
-    public function getLivraison(): ?Livraison
-    {
-        return $this->livraison;
-    }
-
-    public function setLivraison(?Livraison $livraison): self
-    {
-        $this->livraison = $livraison;
-
-        return $this;
-    }
-
+    
     /**
      * @return Collection<int, Detailscommandes>
      */
@@ -285,17 +244,7 @@ class Commande
         return $this;
     }
 
-    public function getReference(): ?string
-    {
-        return $this->reference;
-    }
-
-    public function setReference(string $reference): static
-    {
-        $this->reference = $reference;
-
-        return $this;
-    }
+    
 
     public function getAdrlivraison(): ?string
     {

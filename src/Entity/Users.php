@@ -78,6 +78,7 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     {
         $this->commande = new ArrayCollection();
         $this->created_at = new \DateTimeImmutable();
+        $this->factures = new ArrayCollection();
     }
 
     public function getId(): ?int
