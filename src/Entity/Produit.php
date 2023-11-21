@@ -2,15 +2,16 @@
 
 namespace App\Entity;
 
+use App\Entity\Produit;
 use App\Entity\Fournisseur;
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\DBAL\Types\Types;
 use App\Repository\ProduitRepository;
 use Doctrine\Common\Collections\Collection;
+use Symfony\component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
-use Vich\UploaderBundle\Mapping\Annotation as Vich;
-use Symfony\component\HttpFoundation\File\File;
 
 #[ORM\Entity(repositoryClass: ProduitRepository::class)]
 #[Vich\Uploadable]
@@ -41,8 +42,8 @@ class Produit
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $photo = null;
 
-    #[Vich\UploadableField(mapping: 'products', fileNameProperty: 'photo')]
-    private ?File $photoFile = null; 
+    #[Vich\UploadableField(mapping: 'produit', fileNameProperty: 'photo')] 
+    private ?File $photoFile = null;
 
     #[ORM\Column]
     private ?int $prixachat = null;
