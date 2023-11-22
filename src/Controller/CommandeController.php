@@ -22,7 +22,7 @@ class CommandeController extends AbstractController
         $panier = $session->get("panier", []);
         $nbr=0;
         $pht=0;
-        $fdp=6;
+        $fdp=10;
         $pttc=0;
         $total=0; 
 
@@ -110,6 +110,6 @@ class CommandeController extends AbstractController
         $em->flush();
 
 
-        return $this->render('commande/index.html.twig', compact('pttc', 'pht', 'Facturetotaltva', 'fdp', 'data', 'total'));
+        return $this->render('commande/index.html.twig', compact('pttc', 'pht', 'Facturetotaltva','id', 'fdp', 'data', 'total'));
     }
 }
