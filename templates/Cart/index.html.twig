@@ -2,67 +2,117 @@
 
 {% block body %}
 	<main class="container">
-		<aside class="col-12 border border-light bg-white p-2">
-			<article class="card mb-3">
-				<div class="card-header">
-					<h1>
-						Panier
-					</h1>
-				</div>
-				<div class="card-body">
-					<table class="table">
-						<thead>
-							<tr>
-								<th>Produit</th>
-								<th>Prix</th>
-								<th>Quantité</th>
-								<th>Total</th>
-								<th>Action</th>
-
-							</tr>
-						</thead>
-						<tbody>
-							{% for element in data %}
+		{% if cart|length > 0 %}
+			<aside class="col-12 border border-light bg-white p-2">
+				<article class="card mb-3">
+					<div class="card-header">
+						<h1>
+							Mon panier
+						</h1>
+					</div>
+					<div class="card-body">
+						<table class="table">
+							<thead>
 								<tr>
-									<td>{{ element.produit.libcourt }}</td>
-									<td>{{element.produit.prixachat}}
-										£</td>
-									<td>{{element.quantite}}</td>
-									<td>{{element.quantite * element.produit.prixachat}}
-										£</td>
-									<td>
-										<a href="{{path('cart_add', {id: element.produit.id}) }}" class="btn btn-success">+</a>
-										<a href="{{path('cart_remove', {id: element. produit.id}) }}" class="btn btn-warning">-</a>
-										<a href="{{path('cart_delete', {id: element. produit.id}) }}" class="btn btn-danger">Supprimer</a>
+									<th>Produit</th>
+									<th>Prix</th>
+									<th>Quantité</th>
+									<th>Total</th>
+									<th>Action</th>
+
+								</tr>
+							</thead>
+							<tbody>
+
+
+								{% set total = null %}
+								{% set pttc = null %}
+								{% set pht = null %}
+								{% set total1 = null %}
+
+								{% for element in cart %}
+									{% set total = total + (element.produit.prixachat * element.quantite) %}
+									{% set pttc = total * 1.2  %}
+									{% set total1 = pttc + fdp %}
+
+
+									<tr>
+										<td>{{ element.produit.libcourt }}</td>
+										<td>{{element.produit.prixachat}}
+											€</td>
+										<td>{{element.quantite}}</td>
+										<td>{{element.quantite * element.produit.prixachat}}
+											€</td>
+										<td>
+											<a href="{{path('cart_add', {id: element.produit.id}) }}" class="btn btn-success">+</a>
+											<a href="{{path('cart_decrease', {id: element.produit.id}) }}" class="btn btn-warning">-</a>
+											<a href="{{path('cart_remove', {id: element.produit.id}) }}" class="btn btn-danger">Supprimer</a>
+										</td>
+									</tr>
+
+								{% endfor %}
+
+							</tbody>
+							<tfoot>
+								<tr>
+									<td colspan="3">tva</td>
+
+									<td>{{ Facturetotaltva  }}
+										%</td>
+
+								</tr>
+
+								<tr>
+									<td colspan="3">sous Total</td>
+
+									<td>{{ pttc }}
+										€</td>
+
+
+								</tr>
+								<tr>
+									<td colspan="3">frais de port</td>
+
+									<td>{{ fdp }}
+										€</td>
+
+								</tr>
+
+								<tr>
+									<td colspan="3">Total</td>
+									<td>{{ total1 }}
+										€
 									</td>
-								</tr>
-							{% else %}
-								<tr>
-									<td colspan="5">
-										Votre panier est vide</td>
-								</tr>
-							{% endfor %}
-						</tbody>
-						<tfoot>
-							<tr>
-								<td colspan="3">Total</td>
-								<td>{{ total }}
-									£
-								</td>
-								<td>
-									<a href="{{path('cart_empty') }}" class="btn btn-danger">
-										Vider</a>
 
-								</td>
 
-							</tr>
-						</tfoot>
-					</table>
-                <a href="{{path('app_commande') }}" class="btn btn-primary">Valider Panier</a>
+								</tr>
+							</tfoot>
+						</table>
+						<a href="{{path('cart_index') }}" class="btn btn-primary">Valider le Panier</a>
+						<a href="{{path('cart_removeAll')}}">
+							Supprimer tout mon panier
+						</a>
+
+					</div>
+				</article>
+			</aside>
+		</main>
+	{% else %}
+		<div class="container">
+			<div class="col-12 border border-light bg-white p-2">
+				<div class="card mb-3">
+					<div class="card-header">
+						<h1>
+							Votre panier est vide</h1>
+
+						<p>
+							Commencez votre shopping dès maintenant à travers nos produits
+						</p>
+					</div>
 				</div>
-            </article> 
-        </aside>
-	</main>
+			</div>
+		</div>
+					{% endif %}
 
 
-	{% endblock %}
+				{% endblock %}

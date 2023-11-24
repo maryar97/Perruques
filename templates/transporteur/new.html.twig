@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouveau Transporteur
+{% endblock %}
+
+{% block body %}
+	<main class="container">
+		<aside class="col-12 border border-light bg-white p-2">
+			<article class="card mb-3">
+				<div class="card-header">
+				<h1>Créer un nouveau Transporteur</h1>
+
+				{{ include('transporteur/_form.html.twig') }}
+
+				<a href="{{ path('app_transporteur_index') }}">Retour a la liste</a>
+
+            </div>
+		</section>
+    </main>
+        	{% endblock %}

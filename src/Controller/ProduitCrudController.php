@@ -74,6 +74,7 @@ class ProduitCrudController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $produit->setPhoto("");
             $entityManager->flush();
 
             return $this->redirectToRoute('app_produit_crud_index', [], Response::HTTP_SEE_OTHER);
@@ -86,12 +87,13 @@ class ProduitCrudController extends AbstractController
     }
 
     #[Route('/supprimer/{id}', name: 'app_produit_crud_supprimer', methods: ['POST'])]
-    public function supprimer(Request $request, Produit $produit, EntityManagerInterface $entityManager): Response
+    public function supprimer(Request $request, Produit $id, EntityManagerInterface $entityManager): Response
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
-        if ($this->isCsrfTokenValid('supprimer'.$produit->getId(), $request->request->get('_token'))) {
-            //dd($produit);
-            $entityManager->remove($produit);
+        if ($this->isCsrfTokenValid('supprimer'.$id->getId(), $request->request->get('_token'))) {
+            //dd($id);
+            $id->setPhoto("");
+            $entityManager->remove($id);
             $entityManager->flush();
         }
 

@@ -70,8 +70,8 @@
 				<ul class="navbar-nav ms-auto mb-lg-0">
 					<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 						<li class="nav-item">
-							<a class"navco" href="{{ path('cart_index') }}">
-								<button type="button" class="btn btn-light navco text-black">Panier ({{ app.session.get('panier') | length}})</button>
+							<a class"navco" href="{{ path('cart_index')}}">
+								<button type="button" class="btn btn-light navco text-black">Panier ({{ app.session.get('cart') | length}})</button>
 							</a>
 						</li>
 						&nbsp;

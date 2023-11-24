@@ -2,8 +2,9 @@
 
 namespace App\Entity;
 
-use App\Repository\AdresseRepository;
+use App\Entity\Adresse;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\AdresseRepository;
 
 #[ORM\Entity(repositoryClass: AdresseRepository::class)]
 class Adresse
@@ -14,7 +15,7 @@ class Adresse
     private ?int $id = null;
 
     #[ORM\ManyToOne(inversedBy: 'adresses')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private ?Users $users = null;
 
     #[ORM\Column(length: 255)]
@@ -40,6 +41,14 @@ class Adresse
 
     #[ORM\Column(length: 255)]
     private ?string $pays = null;
+
+    public function __toString(): string
+    {
+        return $this->titre . '[-br]' . 
+            $this->adresse . '[-br]' . 
+            $this->ville . '-' . 
+            $this->pays;
+    }
 
     public function getId(): ?int
     {

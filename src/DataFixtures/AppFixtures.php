@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\Users;
+use App\Entity\Adresse;
 use App\Entity\Produit;
 use App\Entity\Commande;
 use App\Entity\Categorie;
@@ -366,6 +367,31 @@ class AppFixtures extends Fixture
                ->setfacturetotaltva(104)
                ->setfacturetotalht(564);
                $manager->persist($commande1);
+
+
+        $adresse1 = new Adresse();
+        $adresse1->setTitre('ma maison')
+                ->setPrenom('Lucas')
+                ->setNom('Dro')
+                ->setAdresse('20 rue jfkfkf')
+                ->setCodepostal('80080')
+                ->setVille('Amiens')
+                ->setTelephone('0767897678')
+                ->setPays('France');
+                $manager->persist($adresse1);
+
+        $adresse2 = new Adresse();
+        $adresse2->setTitre('au travail')
+                ->setPrenom('Quentin')
+                ->setNom('Alexandre')
+                ->setAdresse('4 rue henri dunant')
+                ->setCodepostal('60100')
+                ->setVille('Creil')
+                ->setTelephone('0_67897678')
+                ->setPays('Suisse');
+                $manager->persist($adresse2);
+
+
 
 
         $categorie1 = new Categorie();

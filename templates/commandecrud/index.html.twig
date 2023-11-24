@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Commande index{% endblock %}
+
+{% block body %}
+    <h1>Commande index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Datecom</th>
+                <th>Totalcom</th>
+                <th>Idpaiement</th>
+                <th>Datepaiement</th>
+                <th>Descppaiement</th>
+                <th>Modepaiement</th>
+                <th>Facturedate</th>
+                <th>Facturetotalttc</th>
+                <th>Facturetotaltva</th>
+                <th>Facturetotalht</th>
+                <th>Adrlivraison</th>
+                <th>Adrfact</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for commande in commandes %}
+            <tr>
+                <td>{{ commande.id }}</td>
+                <td>{{ commande.datecom ? commande.datecom|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ commande.totalcom }}</td>
+                <td>{{ commande.idpaiement }}</td>
+                <td>{{ commande.datepaiement ? commande.datepaiement|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ commande.descppaiement }}</td>
+                <td>{{ commande.modepaiement }}</td>
+                <td>{{ commande.facturedate ? commande.facturedate|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ commande.facturetotalttc }}</td>
+                <td>{{ commande.facturetotaltva }}</td>
+                <td>{{ commande.facturetotalht }}</td>
+                <td>{{ commande.adrlivraison }}</td>
+                <td>{{ commande.adrfact }}</td>
+                <td>
+                    <a href="{{ path('app_commandecrud_show', {'id': commande.id}) }}">show</a>
+                    <a href="{{ path('app_commandecrud_edit', {'id': commande.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="14">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_commandecrud_new') }}">Create new</a>
+{% endblock %}
