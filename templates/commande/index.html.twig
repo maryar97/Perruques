@@ -16,7 +16,7 @@
 				</h3>
 				<p>
 					Si vous n'avez d'adresse ajouter en une dans votre espace compte
-					<a href="#">Ajouter une adresse</a>
+					<a href="{{path('app_adresse_new')}}">Ajouter une adresse</a>
 				</p>
 				<h3 class="fs-base fw-normal text-body text-uppercase pb-2 pb-sm-3">2.<span class="text-decoration-underline ms-1">Choisir votre livraison</span>
 				</h3>
@@ -34,12 +34,14 @@
 					</span>
 				</h2>
 				{% set total = null %}
+				{% set pttc = null %}
 				{% set total1 = null %}
-				{% set fdp = 0 %}
+				{% set fdp = 10 %}
+				{% set Facturetotaltva = 20 %}
 				{% for produit in recapCart %}
 				{% set total = total + (produit.produit.prixachat * produit.quantite) %}
-					{% set total1 = total1 + (produit.produit.prixachat * produit.quantite ) %}
-																			{% set fdp = fdp + 10 %}
+				{% set pttc = total * 1.2  %}
+				{% set total1 = pttc + fdp %}
 
 
 					<div class="d-sm-flex align-items-center border-top-4">
@@ -56,8 +58,9 @@
 										</p>
 									</div>
 									<div>
-										<p class="mb-2">Quantité : x{{produit.quantite}}- Prix du produit :{{ (produit.produit.prixachat)|number_format(2, ',', '.') }}€
-										</p>
+										<p class="mb-2">Quantité : x{{produit.quantite}}- Prix du produit :{{ (produit.produit.prixachat)|number_format(2, ',', '.') }}€ </p>
+										<p class="mb-2"> TVA : {{Facturetotaltva}} % </p>
+										
 									</div>
 								</div>
 								<div class="nav justify-content-end mt-n4">
@@ -71,7 +74,7 @@
 
 					<div class="d-flex align-items-center justify-content-between border-top fs-xl pt-4 mb-4">
 						Total:
-						<span class="fs-3 fw-semibold text-dark ms-2">{{ (total1)|number_format(2, ',', '.') }}
+						<span class="fs-3 fw-semibold text-dark ms-2">{{ (pttc)|number_format(2, ',', '.') }}
 							€</span>
 					</div>
 					<div class="mt-5 text-center">

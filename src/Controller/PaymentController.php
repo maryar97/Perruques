@@ -117,7 +117,7 @@ class PaymentController extends AbstractController
         
     // }
 
-        Stripe::setApiKey('sk_test_51O9QyeJcB7aIs6zZrucNH3s5gBlnUgquUXkR0KmrRdBGd3lVjWdp2jRc1OzsLGoj5LA5y1DISPIdT8pADgrT0DKX00qdskr1kk');
+        Stripe::setApiKey('sk_test_51OGrEOEp0nRmZ5Z08LP6W2QIIvWXlPXk4efldJh8u1yBCm3Az3Ko8ha6o6ARFCbBvPlyrxM9SVEP5ne5EWocYIJS00CWMP336G');
 
 
         $checkout_session = Session::create([
@@ -145,13 +145,13 @@ class PaymentController extends AbstractController
     #[Route('/order/success/{reference}', name: 'payment_success')]
     public function StripeSuccess($reference, CartService $service): Response
     {
-        return $this->render('commande.success.html.twig');
+        return $this->render('commande/success.html.twig');
     }
 
 
     #[Route('/order/error/{reference}', name: 'payment_error')]
     public function StripeError($reference, CartService $service): Response
     {
-        return $this->render('commande.error.html.twig');
+        return $this->render('commande/error.html.twig');
     }
 }

@@ -35,7 +35,15 @@
                         </span>
                     </h2>
                     {% set total1 = null %}
+                    {% set total = null %}
+                    {% set pttc = null %}
+                    {% set fdp = 10 %}
                     {% for produit in recapCart %}
+                    {% set total = total + (produit.produit.prixachat * produit.quantite) %}
+                    {% set pttc = total * 1.2  %}
+                    {% set total1 = pttc + fdp %}
+
+
                         <div class="d-sm-flex align-items-center border-top-4">
                             <a class="d-inline-block flex-shrink-0  rounded-1 p-sm-2 p-xl-3 mb-2 mb-sm-0"></a>
                                 <img src="/images/{{ produit.produit.photo }}" width="150" height="150" alt="{{ produit.produit.photo}}">
@@ -50,8 +58,9 @@
                                             </p>
                                         </div>
                                         <div>
-                                            <p class="mb-2">Quantité : x{{produit.quantite}}- Prix du produit :{{ (produit.produit.prixachat)|number_format(2, ',', '.') }}€
-                                            </p>
+                                            <p class="mb-2">Quantité : x{{produit.quantite}}- Prix du produit :{{ (produit.produit.prixachat)|number_format(2, ',', '.') }}€</p>
+
+                                            <p class="mb-2"> TVA : {{Facturetotaltva}} % </p>
                                         </div>
                                     </div>
                                     <div class="nav justify-content-end mt-n4">
@@ -62,11 +71,12 @@
                                 </div>
                         </div>
                             {% set total1 = total1 + (produit.produit.prixachat * produit.quantite) %}
+							{% set total1 = pttc + fdp %}
                         {% endfor %}
 
                         <ul class="list-unstyled py-3 mb-0">
                             <li class="d-flex justify-content-between mb-2"> Sous-Total: <span 
-                                        class="fw-semibold ms-2">{{ (total1)|number_format(2, ',', '.') }} € </span></li>
+                                        class="fw-semibold ms-2">{{ (pttc)|number_format(2, ',', '.') }} € </span></li>
                             <li class="d-flex justify-content-between mb-2">Frais de port: <span
                                         class="fw-semibold ms-2">{{ (transporteur.prix)|number_format(2, ',', '.') }} € </span></li>
                             </li>
@@ -77,13 +87,13 @@
 
                                 <form methode="POST" action="{{ path('payment_stripe', {reference: reference}) }}">
                                     <button class="btn btn-lg btn-primary" type="submit"
-                                            style="border-radius: 6px; position: relative; top: 20px;">Payer en stripe | {{ (total1 + (transporteur.prix))|number_format(2, ',', '.') }}€
+                                            style="border-radius: 6px; position: relative; top: 20px;">Payer en stripe | {{ (pttc + (transporteur.prix))|number_format(2, ',', '.') }}€
                                     </button>
                                 </form>
                             {% else %}
                             <form methode="POST" action="#">
                                     <button class="btn btn-lg btn-primary" type="submit"
-                                            style="border-radius: 6px; position: relative; top: 20px;">Payer par paypal | {{ (total1 + (transporteur.prix))|number_format(2, ',', '.') }}€
+                                            style="border-radius: 6px; position: relative; top: 20px;">Payer par paypal | {{ (pttc + (transporteur.prix))|number_format(2, ',', '.') }}€
                                     </button>
                                 </form>
                             {% endif %}
