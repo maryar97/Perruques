@@ -2,7 +2,6 @@
 
 namespace App\Entity;
 
-use App\Entity\Adresse;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\AdresseRepository;
 

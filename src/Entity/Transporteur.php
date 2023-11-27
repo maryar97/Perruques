@@ -2,11 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\TransporteurRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\DBAL\Types\Types;
+use App\Repository\TransporteurRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 #[ORM\Entity(repositoryClass: TransporteurRepository::class)]
 class Transporteur
@@ -28,11 +28,11 @@ class Transporteur
     #[ORM\OneToMany(mappedBy: 'transporteur', targetEntity: Commande::class)]
     private Collection $commande;
 
-   
+
 
     public function __construct()
     {
-        $this->transp = new ArrayCollection();
+        $this->transporteur = new ArrayCollection();
         $this->commande = new ArrayCollection();
     }
 
@@ -79,7 +79,7 @@ class Transporteur
 
     public function __toString(): string {
 
-   
+
         return $this->nom . '[-br]' . 
             $this->contenu . '[-br]' . 
             $this->prix . '€';

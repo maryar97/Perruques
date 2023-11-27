@@ -349,24 +349,21 @@ class AppFixtures extends Fixture
         $livraison1->setlivrdate(new \DateTimeImmutable())
                 ->setlivraisondescp('hhgh')
                 ->setIdUsers(3)
-                ->setmodelivraison('Colossimo');
+                ->setmodelivraison('Colissimo');
                 $manager->persist($livraison1);
 
 
         $commande1 = new Commande();
-        $commande1->setdatecom(new \DateTimeImmutable())
-               ->settotalcom(2)
-               ->setadrlivraison('')
-               ->setadrfact('')
-               ->setidpaiement(1)
-               ->setdatepaiement(new \DateTimeImmutable())
-               ->setdescppaiement('Diféré')
-               ->setmodepaiement('Carte bancaire')
-               ->setfacturedate(new \DateTimeImmutable())
-               ->setfacturetotalttc(124)
-               ->setfacturetotaltva(104)
-               ->setfacturetotalht(564);
-               $manager->persist($commande1);
+        $commande1->setTransporteurNom('')
+                ->setTransporteurPrix(10,0)
+                ->setLivraison('')
+                ->setIsPaid('')
+                ->setPaypalCommandeId('')
+                ->setCreateAt(new \DateTimeImmutable())
+                ->setMethode('')
+                ->setReference('')
+                ->setStripeSessionId('');
+                $manager->persist($commande1);
 
 
         $adresse1 = new Adresse();

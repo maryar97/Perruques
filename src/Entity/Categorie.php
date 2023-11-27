@@ -2,7 +2,6 @@
 
 namespace App\Entity;
 
-use App\Entity\Categorie;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\CategorieRepository;
 use Doctrine\Common\Collections\Collection;
@@ -112,7 +111,6 @@ class Categorie
         return $this;
     }
 
-  
 
     /**
      * @return Collection<int, Produit>

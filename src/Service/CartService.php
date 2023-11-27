@@ -3,7 +3,6 @@ namespace App\Service;
 
 
 use App\Entity\Produit;
-use App\Service\CartService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -26,14 +25,14 @@ class CartService
     public function addToCart(int $id): void 
     {
 
-       $cart = $this->requestStack->getSession()->get('cart', []);
-       if(!empty($cart[$id])){
-            $cart[$id]++;
-       }else{
-            $cart[$id] = 1;
-       }
-       $this->getSession()->set('cart', $cart);
-       
+        $cart = $this->requestStack->getSession()->get('cart', []);
+        if(!empty($cart[$id])){
+                $cart[$id]++;
+        }else{
+                $cart[$id] = 1;
+        }
+        $this->getSession()->set('cart', $cart);
+        
     }
 
 
@@ -73,19 +72,20 @@ class CartService
 
     public function getTotal(): array
     {
-        $cart = $this->getSession()->get('cart');
+        $cart = $this->getSession()->get('cart'); 
         $cartData = []; 
         if($cart){
             foreach ($cart as $id => $quantite) {
                 $produit = $this->em->getRepository(Produit::class)->findOneBy(['id' => $id]);
                 if(!$produit){
+                    $this->removeToCart($id);
+                    continue;
                     // Supprimer le produit puis continuer en sortant de la boucle
                 }
-
                 $cartData[] = [
                     'produit' => $produit,
                     'quantite' => $quantite
-                ];
+                ]; 
 
             } 
             

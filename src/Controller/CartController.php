@@ -26,7 +26,7 @@ class CartController extends AbstractController
         $total=0;
         $Facturetotaltva=20;
         $total1=0;
-     
+    
 
         // dd($cartService->getTotal());
 
@@ -81,15 +81,7 @@ class CartController extends AbstractController
         $cartService->revoveCartAll();
 
         return $this->redirectToRoute('cart_index');
-    }
-
-    
-
-
-  
-
-     
-    
+    } 
 }
 
 

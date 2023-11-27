@@ -16,191 +16,55 @@ class Commande
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(type: Types::DATETIME_IMMUTABLE)]
-    private ?\DateTimeImmutable $datecom = null;
-
-    #[ORM\Column]
-    private ?int $totalcom = null;
-
-    
-
-    #[ORM\Column]
-    private ?int $idpaiement = null;
-
-    #[ORM\Column(type: Types::DATETIME_IMMUTABLE)]
-    private ?\DateTimeImmutable $datepaiement = null;
-
-    #[ORM\Column(type: Types::TEXT)]
-    private ?string $descppaiement = null;
-
-    #[ORM\Column(length: 100)]
-    private ?string $modepaiement = null;
-
-    #[ORM\Column(type: Types::DATETIME_IMMUTABLE)]
-    private ?\DateTimeImmutable $facturedate = null;
-
-    #[ORM\Column(type: Types::DECIMAL, precision: 7, scale: 2)]
-    private ?string $facturetotalttc = null;
-
-    #[ORM\Column(type: Types::DECIMAL, precision: 7, scale: 2)]
-    private ?string $facturetotaltva = null;
-
-    #[ORM\Column(type: Types::DECIMAL, precision: 7, scale: 2)]
-    private ?string $facturetotalht = null;
-
-
     #[ORM\ManyToOne(targetEntity: Users::class)]
     #[ORM\JoinColumn(nullable: true)]
     private ?Users $Users = null; 
 
-    #[ORM\OneToMany(mappedBy: 'Commande', targetEntity: Detailscommandes::class, orphanRemoval: true)]
-    private Collection $detailscommandes;
-
 
     #[ORM\Column(length: 255)]
-    private ?string $adrlivraison = null;
+    private ?string $transporteurNom = null;
+
+    #[ORM\Column]
+    private ?float $transporteurPrix = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $adrfact = null;
+    private ?string $livraison = null;
 
+    #[ORM\Column]
+    private ?bool $isPaid = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $methode = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $reference = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $stripeSessionId = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $paypalCommandeId = null;
+
+    #[ORM\Column]
+    private ?\DateTimeImmutable $CreateAt = null;
+
+    #[ORM\OneToMany(mappedBy: 'Commande', targetEntity: RecapDetails::class)]
+    private Collection $recapDetails;
 
     public function __construct()
     {
-        $this->detailscommandes = new ArrayCollection();
+        $this->recapDetails = new ArrayCollection();
     }
 
-    
+
+
 
     public function getId(): ?int
     {
         
         return $this->id;
     }
-
-    public function getDatecom(): ?\DateTimeImmutable
-    {
-        return $this->datecom;
-    }
-
-    public function setDatecom(\DateTimeImmutable $datecom): self
-    {
-        $this->datecom = $datecom;
-
-        return $this;
-    }
-
-    public function getTotalcom(): ?string
-    {
-        return $this->totalcom;
-    }
-
-    public function setTotalcom(string $totalcom): self
-    {
-        $this->totalcom = $totalcom;
-
-        return $this;
-    }
-
     
-
-    public function getIdpaiement(): ?int
-    {
-        return $this->idpaiement;
-    }
-
-    public function setIdpaiement(int $idpaiement): self
-    {
-        $this->idpaiement = $idpaiement;
-
-        return $this;
-    }
-
-    public function getDatepaiement(): ?\DateTimeImmutable
-    {
-        return $this->datepaiement;
-    }
-
-    public function setDatepaiement(\DateTimeImmutable $datepaiement): self
-    {
-        $this->datepaiement = $datepaiement;
-
-        return $this;
-    }
-
-    public function getDescppaiement(): ?string
-    {
-        return $this->descppaiement;
-    }
-
-    public function setDescppaiement(string $descppaiement): self
-    {
-        $this->descppaiement = $descppaiement;
-
-        return $this;
-    }
-
-    public function getModepaiement(): ?string
-    {
-        return $this->modepaiement;
-    }
-
-    public function setModepaiement(string $modepaiement): self
-    {
-        $this->modepaiement = $modepaiement;
-
-        return $this;
-    }
-
-
-    public function getFacturedate(): ?\DateTimeImmutable
-    {
-        return $this->facturedate;
-    }
-
-    public function setFacturedate(\DateTimeImmutable $facturedate): self
-    {
-        $this->facturedate = $facturedate;
-
-        return $this;
-    }
-
-    public function getFacturetotalttc(): ?string
-    {
-        return $this->facturetotalttc;
-    }
-
-    public function setFacturetotalttc(string $facturetotalttc): self
-    {
-        $this->facturetotalttc = $facturetotalttc;
-
-        return $this;
-    }
-
-    public function getFacturetotaltva(): ?string
-    {
-        return $this->facturetotaltva;
-    }
-
-    public function setFacturetotaltva(string $facturetotaltva): self
-    {
-        $this->facturetotaltva = $facturetotaltva;
-
-        return $this;
-    }
-
-    public function getFacturetotalht(): ?string
-    {
-        return $this->facturetotalht;
-    }
-
-    public function setFacturetotalht(string $facturetotalht): self
-    {
-        $this->facturetotalht = $facturetotalht;
-
-        return $this;
-    }
-
-
     public function getUsers(): ?Users
     {
         return $this->Users;
@@ -213,60 +77,146 @@ class Commande
         return $this;
     }
 
-    
-    /**
-     * @return Collection<int, Detailscommandes>
-     */
-    public function getDetailscommandes(): Collection
+
+    public function getTransporteurNom(): ?string
     {
-        return $this->detailscommandes;
+        return $this->transporteurNom;
     }
 
-    public function addDetailscommande(Detailscommandes $detailscommande): static
+    public function setTransporteurNom(string $transporteurNom): static
     {
-        if (!$this->detailscommandes->contains($detailscommande)) {
-            $this->detailscommandes->add($detailscommande);
-            $detailscommande->setCommande($this);
+        $this->transporteurNom = $transporteurNom;
+
+        return $this;
+    }
+
+    public function getTransporteurPrix(): ?float
+    {
+        return $this->transporteurPrix;
+    }
+
+    public function setTransporteurPrix(float $transporteurPrix): static
+    {
+        $this->transporteurPrix = $transporteurPrix;
+
+        return $this;
+    }
+
+    public function getLivraison(): ?string
+    {
+        return $this->livraison;
+    }
+
+    public function setLivraison(string $livraison): static
+    {
+        $this->livraison = $livraison;
+
+        return $this;
+    }
+
+    public function isIsPaid(): ?bool
+    {
+        return $this->isPaid;
+    }
+
+    public function setIsPaid(bool $isPaid): static
+    {
+        $this->isPaid = $isPaid;
+
+        return $this;
+    }
+
+    public function getMethode(): ?string
+    {
+        return $this->methode;
+    }
+
+    public function setMethode(string $methode): static
+    {
+        $this->methode = $methode;
+
+        return $this;
+    }
+
+    public function getReference(): ?string
+    {
+        return $this->reference;
+    }
+
+    public function setReference(string $reference): static
+    {
+        $this->reference = $reference;
+
+        return $this;
+    }
+
+    public function getStripeSessionId(): ?string
+    {
+        return $this->stripeSessionId;
+    }
+
+    public function setStripeSessionId(?string $stripeSessionId): static
+    {
+        $this->stripeSessionId = $stripeSessionId;
+
+        return $this;
+    }
+
+    public function getPaypalCommandeId(): ?string
+    {
+        return $this->paypalCommandeId;
+    }
+
+    public function setPaypalCommandeId(?string $paypalCommandeId): static
+    {
+        $this->paypalCommandeId = $paypalCommandeId;
+
+        return $this;
+    }
+
+    public function getCreateAt(): ?\DateTimeImmutable
+    {
+        return $this->CreateAt;
+    }
+
+    public function setCreateAt(\DateTimeImmutable $CreateAt): static
+    {
+        $this->CreateAt = $CreateAt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, RecapDetails>
+     */
+    public function getRecapDetails(): Collection
+    {
+        return $this->recapDetails;
+    }
+
+    public function addRecapDetail(RecapDetails $recapDetail): static
+    {
+        if (!$this->recapDetails->contains($recapDetail)) {
+            $this->recapDetails->add($recapDetail);
+            $recapDetail->setCommande($this);
         }
 
         return $this;
     }
 
-    public function removeDetailscommande(Detailscommandes $detailscommande): static
+    public function removeRecapDetail(RecapDetails $recapDetail): static
     {
-        if ($this->detailscommandes->removeElement($detailscommande)) {
+        if ($this->recapDetails->removeElement($recapDetail)) {
             // set the owning side to null (unless already changed)
-            if ($detailscommande->getCommande() === $this) {
-                $detailscommande->setCommande(null);
+            if ($recapDetail->getCommande() === $this) {
+                $recapDetail->setCommande(null);
             }
         }
 
         return $this;
     }
 
-    
 
-    public function getAdrlivraison(): ?string
-    {
-        return $this->adrlivraison;
-    }
 
-    public function setAdrlivraison(string $adrlivraison): static
-    {
-        $this->adrlivraison = $adrlivraison;
 
-        return $this;
-    }
-
-    public function getAdrfact(): ?string
-    {
-        return $this->adrfact;
-    }
-
-    public function setAdrfact(string $adrfact): static
-    {
-        $this->adrfact = $adrfact;
-
-        return $this;
-    }
 }
