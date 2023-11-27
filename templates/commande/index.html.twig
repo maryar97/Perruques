@@ -33,9 +33,15 @@
 						produit)
 					</span>
 				</h2>
+				{% set total = null %}
 				{% set total1 = null %}
+				{% set fdp = 0 %}
 				{% for produit in recapCart %}
+				{% set total = total + (produit.produit.prixachat * produit.quantite) %}
 					{% set total1 = total1 + (produit.produit.prixachat * produit.quantite ) %}
+																			{% set fdp = fdp + 10 %}
+
+
 					<div class="d-sm-flex align-items-center border-top-4">
 						<a class="d-inline-block flex-shrink-0  rounded-1 p-sm-2 p-xl-3 mb-2 mb-sm-0"></a>
 							<img src="/images/{{ produit.produit.photo }}" width="150" height="150" alt="{{ produit.produit.photo}}">

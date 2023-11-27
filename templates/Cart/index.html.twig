@@ -29,6 +29,7 @@
 								{% set pttc = null %}
 								{% set pht = null %}
 								{% set total1 = null %}
+								{% set fdp = 10 %}
 
 								{% for element in cart %}
 									{% set total = total + (element.produit.prixachat * element.quantite) %}
@@ -72,10 +73,15 @@
 								</tr>
 								<tr>
 									<td colspan="3">frais de port</td>
+									{% if pttc < 200 %}
+										<td> {{ fdp }} €</td>
 
-									<td>{{ fdp }}
-										€</td>
+									{% endif %}
 
+									{% if pttc > 200 %}
+										<td> 0 €</td>
+
+									{% endif %}
 								</tr>
 
 								<tr>
@@ -112,7 +118,7 @@
 				</div>
 			</div>
 		</div>
-					{% endif %}
+	{% endif %}
 
 
-				{% endblock %}
+{% endblock %}
