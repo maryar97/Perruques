@@ -73,7 +73,7 @@ class CommandeController extends AbstractController
             // dd($livraisonForCommande);
             $commande = new Commande();
             $reference = $datetimeimmutable->format('dmy').'-'.uniqid(); 
-            $commande->setUsers($this->getUser());
+            $commande->setComUsers($this->getUser());
             $commande->setReference($reference);
             $commande->setCreateAt($datetimeimmutable);
             $commande->setLivraison($livraisonForCommande);
@@ -81,6 +81,8 @@ class CommandeController extends AbstractController
             $commande->setTransporteurPrix($transporteur->getPrix());
             $commande->setIsPaid(0);
             $commande->setMethode('stripe'); 
+            $commande->setAdrFact($livraisonForCommande); 
+            $commande->setDateFact($datetimeimmutable);
             $this->em->persist($commande);
                         // dd($commande); 
 

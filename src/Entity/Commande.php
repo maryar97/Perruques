@@ -16,9 +16,6 @@ class Commande
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\ManyToOne(targetEntity: Users::class)]
-    #[ORM\JoinColumn(nullable: true)]
-    private ?Users $Users = null; 
 
 
     #[ORM\Column(length: 255)]
@@ -51,6 +48,28 @@ class Commande
     #[ORM\OneToMany(mappedBy: 'Commande', targetEntity: RecapDetails::class)]
     private Collection $recapDetails;
 
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $adr_fact = null;
+
+    #[ORM\Column(type: Types::DATETIMETZ_IMMUTABLE, nullable: true)]
+    private ?\DateTimeImmutable $date_fact = null;
+
+    #[ORM\ManyToOne(inversedBy: 'commandes')]
+    private ?Users $com_users = null;
+
+    #[ORM\Column (nullable: true)]
+    private ?int $com_fact_id = null;
+
+    #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2, nullable: true)]
+    private ?string $facture_total_ttc = null;
+
+    #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2, nullable: true)]
+    private ?string $facture_total_ht = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?float $facture_tva = null;
+
     public function __construct()
     {
         $this->recapDetails = new ArrayCollection();
@@ -65,17 +84,7 @@ class Commande
         return $this->id;
     }
     
-    public function getUsers(): ?Users
-    {
-        return $this->Users;
-    }
 
-    public function setUsers(?Users $Users): self
-    {
-        $this->Users = $Users;
-
-        return $this;
-    }
 
 
     public function getTransporteurNom(): ?string
@@ -114,7 +123,7 @@ class Commande
         return $this;
     }
 
-    public function isIsPaid(): ?bool
+    public function getIsPaid(): ?bool
     {
         return $this->isPaid;
     }
@@ -212,6 +221,92 @@ class Commande
                 $recapDetail->setCommande(null);
             }
         }
+
+        return $this;
+    }
+
+
+
+    public function getAdrFact(): ?string
+    {
+        return $this->adr_fact;
+    }
+
+    public function setAdrFact(string $adr_fact): static
+    {
+        $this->adr_fact = $adr_fact;
+
+        return $this;
+    }
+
+    public function getDateFact(): ?\DateTimeImmutable
+    {
+        return $this->date_fact;
+    }
+
+    public function setDateFact(\DateTimeImmutable $date_fact): static
+    {
+        $this->date_fact = $date_fact;
+
+        return $this;
+    }
+
+    public function getComUsers(): ?Users
+    {
+        return $this->com_users;
+    }
+
+    public function setComUsers(?Users $com_users): static
+    {
+        $this->com_users = $com_users;
+
+        return $this;
+    }
+
+    public function getComFactId(): ?int
+    {
+        return $this->com_fact_id;
+    }
+
+    public function setComFactId(int $com_fact_id): static
+    {
+        $this->com_fact_id = $com_fact_id;
+
+        return $this;
+    }
+
+    public function getFactureTotalTtc(): ?string
+    {
+        return $this->facture_total_ttc;
+    }
+
+    public function setFactureTotalTtc(?string $facture_total_ttc): static
+    {
+        $this->facture_total_ttc = $facture_total_ttc;
+
+        return $this;
+    }
+
+    public function getFactureTotalHt(): ?string
+    {
+        return $this->facture_total_ht;
+    }
+
+    public function setFactureTotalHt(?string $facture_total_ht): static
+    {
+        $this->facture_total_ht = $facture_total_ht;
+
+        return $this;
+    }
+
+    public function getFactureTva(): ?float
+    {
+        return $this->facture_tva;
+    }
+
+    public function setFactureTva(?float $facture_tva): static
+    {
+        $this->facture_tva = $facture_tva;
 
         return $this;
     }
