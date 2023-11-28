@@ -57,12 +57,6 @@ class CartService
     }
 
 
-
-
-
-
-
-
     public function revoveCartAll()
     {
         return $this->getSession()->remove('cart');

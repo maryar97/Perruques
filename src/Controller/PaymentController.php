@@ -13,6 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class PaymentController extends AbstractController
 {
@@ -143,15 +144,19 @@ class PaymentController extends AbstractController
     }
 
     #[Route('/order/success/{reference}', name: 'payment_success')]
-    public function StripeSuccess($reference, CartService $service): Response
+    public function StripeSuccess(SessionInterface $session, $reference, CartService $service): Response
     {
+                    $session->remove('cart');
+
         return $this->render('commande/success.html.twig');
     }
 
 
     #[Route('/order/error/{reference}', name: 'payment_error')]
-    public function StripeError($reference, CartService $service): Response
+    public function StripeError(SessionInterface $session, $reference, CartService $service): Response
     {
+                $session->remove('cart');
+
         return $this->render('commande/error.html.twig');
     }
 }

@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\AdresseRepository;
 
@@ -41,10 +43,20 @@ class Adresse
     #[ORM\Column(length: 255)]
     private ?string $pays = null;
 
+    #[ORM\OneToMany(mappedBy: 'com_adr_livr', targetEntity: Commande::class)]
+    private Collection $commandes;
+
+    public function __construct()
+    {
+        $this->commandes = new ArrayCollection();
+    }
+
+
+
     public function __toString(): string
     {
         return $this->titre . '[-br]' . 
-            $this->adresse . '[-br]' . 
+            $this->adresse . '-' . 
             $this->ville . '-' . 
             $this->pays;
     }
@@ -161,4 +173,39 @@ class Adresse
 
         return $this;
     }
+
+    /**
+     * @return Collection<int, Commande>
+     */
+    public function getCommandes(): Collection
+    {
+        return $this->commandes;
+    }
+
+    public function addCommande(Commande $commande): static
+    {
+        if (!$this->commandes->contains($commande)) {
+            $this->commandes->add($commande);
+            $commande->setComAdrLivr($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommande(Commande $commande): static
+    {
+        if ($this->commandes->removeElement($commande)) {
+            // set the owning side to null (unless already changed)
+            if ($commande->getComAdrLivr() === $this) {
+                $commande->setComAdrLivr(null);
+            }
+        }
+
+        return $this;
+    }
+
+    
+    
+
+
 }

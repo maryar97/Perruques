@@ -70,6 +70,11 @@ class Commande
     #[ORM\Column(nullable: true)]
     private ?float $facture_tva = null;
 
+
+    #[ORM\ManyToOne(inversedBy: 'commandes')]
+    private ?Adresse $com_adr_livr = null;
+
+
     public function __construct()
     {
         $this->recapDetails = new ArrayCollection();
@@ -123,7 +128,7 @@ class Commande
         return $this;
     }
 
-    public function getIsPaid(): ?bool
+    public function isIsPaid(): ?bool
     {
         return $this->isPaid;
     }
@@ -310,6 +315,21 @@ class Commande
 
         return $this;
     }
+
+
+    public function getComAdrLivr(): ?Adresse
+    {
+        return $this->com_adr_livr;
+    }
+
+    public function setComAdrLivr(?Adresse $com_adr_livr): static
+    {
+        $this->com_adr_livr = $com_adr_livr;
+
+        return $this;
+    }
+
+
 
 
 

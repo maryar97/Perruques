@@ -7,10 +7,12 @@ use App\Form\CommandeType;
 use App\Entity\RecapDetails;
 use App\Service\CartService;
 use Doctrine\ORM\EntityManagerInterface;
+use phpDocumentor\Reflection\Types\Boolean;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class CommandeController extends AbstractController
 {
@@ -41,7 +43,7 @@ class CommandeController extends AbstractController
         ]);
     }
     #[Route('/order/verify', name: 'order_prepare', methods: ['POST'])]
-    public function prepareOrder(CartService $cartService, Request $request): Response
+    public function prepareOrder(SessionInterface $session, CartService $cartService, Request $request): Response
     {
         if(!$this->getUser()){
 
@@ -79,7 +81,7 @@ class CommandeController extends AbstractController
             $commande->setLivraison($livraisonForCommande);
             $commande->setTransporteurNom($transporteur->getNom());
             $commande->setTransporteurPrix($transporteur->getPrix());
-            $commande->setIsPaid(0);
+            $commande->setIsPaid('bool');
             $commande->setMethode('stripe'); 
             $commande->setAdrFact($livraisonForCommande); 
             $commande->setDateFact($datetimeimmutable);
