@@ -17,7 +17,6 @@ class Commande
     private ?int $id = null;
 
 
-
     #[ORM\Column(length: 255)]
     private ?string $transporteurNom = null;
 
@@ -49,7 +48,7 @@ class Commande
     private Collection $recapDetails;
 
 
-    #[ORM\Column(length: 255, nullable: true)]
+    #[ORM\Column(length: 255)]
     private ?string $adr_fact = null;
 
     #[ORM\Column(type: Types::DATETIMETZ_IMMUTABLE, nullable: true)]
@@ -58,7 +57,7 @@ class Commande
     #[ORM\ManyToOne(inversedBy: 'commandes')]
     private ?Users $com_users = null;
 
-    #[ORM\Column (nullable: true)]
+    #[ORM\Column]
     private ?int $com_fact_id = null;
 
     #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2, nullable: true)]
@@ -67,17 +66,23 @@ class Commande
     #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2, nullable: true)]
     private ?string $facture_total_ht = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?float $facture_tva = null;
+    #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2, nullable: true)]
+    private ?string $facture_tva = null;
 
 
     #[ORM\ManyToOne(inversedBy: 'commandes')]
     private ?Adresse $com_adr_livr = null;
 
+    #[ORM\OneToMany(mappedBy: 'panier_com', targetEntity: Panier::class)]
+    private Collection $paniers;
+
+
+
 
     public function __construct()
     {
         $this->recapDetails = new ArrayCollection();
+        $this->paniers = new ArrayCollection();
     }
 
 
@@ -304,12 +309,12 @@ class Commande
         return $this;
     }
 
-    public function getFactureTva(): ?float
+    public function getFactureTva(): ?string
     {
         return $this->facture_tva;
     }
 
-    public function setFactureTva(?float $facture_tva): static
+    public function setFactureTva(?string $facture_tva): static
     {
         $this->facture_tva = $facture_tva;
 
@@ -328,6 +333,38 @@ class Commande
 
         return $this;
     }
+
+    /**
+     * @return Collection<int, panier>
+     */
+    public function getPanier(): Collection
+    {
+        return $this->paniers;
+    }
+
+    public function addPanier(panier $panier): static
+    {
+        if (!$this->paniers->contains($panier)) {
+            $this->paniers->add($panier);
+            $panier->setPanierCom($this);
+        }
+
+        return $this;
+    }
+
+    public function removePanier(panier $panier): static
+    {
+        if ($this->paniers->removeElement($panier)) {
+            // set the owning side to null (unless already changed)
+            if ($panier->getPanierCom() === $this) {
+                $panier->setPanierCom(null);
+            }
+        }
+
+        return $this;
+    }
+
+
 
 
 

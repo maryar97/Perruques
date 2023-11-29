@@ -15,10 +15,10 @@
 					</span>
 				</h3>
 				<p>
-					Si vous n'avez d'adresse ajouter en une dans votre espace compte
-					<a href="{{path('app_adresse_new')}}">Ajouter une adresse</a>
+					Si vous n'avez d'adresse de livraison ajouter en une dans votre espace compte
+					<a href="{{path('app_adresse_new')}}">Ajouter une adresse de livraison</a>
 				</p>
-				<h3 class="fs-base fw-normal text-body text-uppercase pb-2 pb-sm-3">2.<span class="text-decoration-underline ms-1">Choisir votre livraison</span>
+				<h3 class="fs-base fw-normal text-body text-uppercase pb-2 pb-sm-3">2.<span class="text-decoration-underline ms-1">Choisir votre adresse de livraison</span>
 				</h3>
 				{{ form_row(form.adresse)|replace({'[-br]' : '<br/>'})|raw }}
 				<h3 class="fs-base fw-normal text-body text-uppercase mt-n4 mt-md-n3 pt-5 pb-2 pb-sm-3">3.
@@ -26,7 +26,7 @@
 				</h3>
 				{{ form_row(form.transporteur)|replace({'[-br]' : '<br/>'})|raw }}
 			</div>
-			<div class="col-lg-5 offset-lg-1 pt-1 btn btn-light">
+			<div class="col-lg-5 offset-lg-1 pt-1">
 				{# {{dump(recapCart) }} #}
 				<h2 class="pb-2 pt-md-2 my-4 mt-lg-5">Récapitulatif de la commande
 					<span class='fs-base fw-normal text-muted'>({{ recapCart|length }}

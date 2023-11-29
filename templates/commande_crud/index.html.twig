@@ -14,9 +14,9 @@
                 <th>Adresse de livraison</th>
                 <th>Payé</th>
                 <th>Mode de paiement</th>
-                <th>Reference</th>
-                <th>Identifiant de la session</th>
-                <th>Identifiant paypal</th>
+                {# <th>Reference</th> #}
+                {# <th>Identifiant de la session</th>
+                <th>Identifiant paypal</th> #}
                 <th>Date de commande</th>
                 <th>Adresse de facturation</th>
                 <th>Date de facturation</th>
@@ -32,12 +32,12 @@
                 <td>{{ commande.livraison }}</td>
                 <td>{{ commande.isPaid ? 'Yes' : 'No' }}</td>
                 <td>{{ commande.methode }}</td>
-                <td>{{ commande.reference }}</td>
-                <td>{{ commande.stripeSessionId }}</td>
-                <td>{{ commande.paypalCommandeId }}</td>
+                {# <td>{{ commande.reference }}</td> #}
+                {# <td>{{ commande.stripeSessionId }}</td>
+                <td>{{ commande.paypalCommandeId }}</td> #}
                 <td>{{ commande.CreateAt ? commande.CreateAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ commande.adrFact }}</td>
-                <td>{{ commande.dateFact ? commande.dateFact|date('Y-m-d H:i:s T') : '' }}</td>
+                <td>{{ commande.CreateAt ? commande.CreateAt|date('Y-m-d H:i:s T') : '' }}</td>
                 <td>
                     <a href="{{ path('app_commande_crud_show', {'id': commande.id}) }}">Afficher</a>
                     <a href="{{ path('app_commande_crud_edit', {'id': commande.id}) }}">Modifier</a>

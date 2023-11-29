@@ -36,9 +36,21 @@
 						<a class="dropdown-item" href="/souscategorie/5">COLORATION</a>
 						<a class="dropdown-item" href="/souscategorie/6">LISSEUR CHAUFFANT</a>
 					</li>
+						
+						
+						{% if app.user %}
+							{% if is_granted('ROLE_ADMIN') %}
+								<li class="nav-item">
+									<a class="nav-link" href="{{path('app_commande_crud_index')}}">Commandes</a>
+								</li>
+							{% endif %}
+						{% endif %}
+
+					<li class="nav-item">
+					<a class="nav-link" href="{{path('app_commande_mon_index')}}">Mes commandes</a>
+				</li>
 				</li>
 			</ul>
-
 
 			<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 				{% if app.user %}

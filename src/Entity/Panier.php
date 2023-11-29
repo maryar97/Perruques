@@ -23,11 +23,14 @@ class Panier
     #[ORM\Column(type: Types::DECIMAL, precision: 7, scale: 2)]
     private ?string $reduction = null;
 
-    #[ORM\ManyToOne(inversedBy: 'paniers')]
-    private ?Commande $panier_com = null;
+    
 
     #[ORM\ManyToOne(inversedBy: 'paniers')]
     private ?Produit $panier_prod = null;
+
+    #[ORM\ManyToOne(inversedBy: 'paniers')]
+    private ?Commande $panier_com = null;
+
 
     public function getId(): ?int
     {
@@ -70,18 +73,7 @@ class Panier
         return $this;
     }
 
-    public function getPanierCom(): ?Commande
-    {
-        return $this->panier_com;
-    }
-
-    public function setPanierCom(?Commande $panier_com): static
-    {
-        $this->panier_com = $panier_com;
-
-        return $this;
-    }
-
+    
     public function getPanierProd(): ?Produit
     {
         return $this->panier_prod;
@@ -90,6 +82,18 @@ class Panier
     public function setPanierProd(?Produit $panier_prod): static
     {
         $this->panier_prod = $panier_prod;
+
+        return $this;
+    }
+
+    public function getPanierCom(): ?Commande
+    {
+        return $this->panier_com;
+    }
+
+    public function setPanierCom(?Commande $panier_com): static
+    {
+        $this->panier_com = $panier_com;
 
         return $this;
     }

@@ -144,16 +144,18 @@ class PaymentController extends AbstractController
     }
 
     #[Route('/order/success/{reference}', name: 'payment_success')]
-    public function StripeSuccess(SessionInterface $session, $reference, CartService $service): Response
+    public function StripeSuccess(SessionInterface $session, $reference, CartService $cartService): Response
     {
                     $session->remove('cart');
+
+
 
         return $this->render('commande/success.html.twig');
     }
 
 
     #[Route('/order/error/{reference}', name: 'payment_error')]
-    public function StripeError(SessionInterface $session, $reference, CartService $service): Response
+    public function StripeError(SessionInterface $session, $reference, CartService $cartService): Response
     {
                 $session->remove('cart');
 

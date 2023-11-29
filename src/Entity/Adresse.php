@@ -46,6 +46,9 @@ class Adresse
     #[ORM\OneToMany(mappedBy: 'com_adr_livr', targetEntity: Commande::class)]
     private Collection $commandes;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $email = null;
+
     public function __construct()
     {
         $this->commandes = new ArrayCollection();
@@ -200,6 +203,18 @@ class Adresse
                 $commande->setComAdrLivr(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): static
+    {
+        $this->email = $email;
 
         return $this;
     }

@@ -33,22 +33,26 @@
 
 				<p>
 					Prix :
-					{{ produit.prixachat }}£
+					{{ produit.prixachat }}€
 				</p>
 
+					<p>
+						Stock : 
+					{{ produit.quantite }}
+					</p>
 
-				{% if produit.stock > 0 %}
+				{% if produit.quantite > 0 %}
 					<a href="{{path('cart_add', {id: produit.id}) }}" class="btn btn-danger">
 						Ajouter au panier
-					</a>
-				{% else %}
+					</a> 
+				{% endif %}
+				{% if produit.quantite < 0  %}
 					<p class="text-warning">
 						Temporairement en rupture de stock
 					</p>
 				{% endif %}
 
-			</p>
-		</div>
+			</div>
 
 	</section>
 </main>

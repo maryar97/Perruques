@@ -37,7 +37,7 @@
                 <td>{{ commande.paypalCommandeId }}</td>
                 <td>{{ commande.CreateAt ? commande.CreateAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ commande.adrFact }}</td>
-                <td>{{ commande.dateFact ? commande.dateFact|date('Y-m-d H:i:s T') : '' }}</td>
+                <td>{{ commande.CreateAt ? commande.CreateAt|date('Y-m-d H:i:s T') : '' }}</td>
                 <td>
                     <a href="{{ path('app_commande_crud_show', {'id': commande.id}) }}">Afficher</a>
                     <a href="{{ path('app_commande_crud_edit', {'id': commande.id}) }}">Modifier</a>

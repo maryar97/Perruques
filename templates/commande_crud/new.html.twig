@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Nouvelle commande{% endblock %}
+{% block title %}New Commande{% endblock %}
 
 {% block body %}
-    <h1>Créer une nouvelle commande</h1>
+    <h1>Create new Commande</h1>
 
     {{ include('commande_crud/_form.html.twig') }}
 
-    <a href="{{ path('app_commande_crud_index') }}">Retour à la liste</a>
+    <a href="{{ path('app_commande_crud_index') }}">back to list</a>
 {% endblock %}

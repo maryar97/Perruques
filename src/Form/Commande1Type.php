@@ -9,7 +9,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class Commande2Type extends AbstractType
+class Commande1Type extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {

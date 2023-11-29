@@ -59,12 +59,24 @@
                 <th>Com_fact_id</th>
                 <td>{{ commande.comFactId }}</td>
             </tr>
+            <tr>
+                <th>Facture_total_ttc</th>
+                <td>{{ commande.factureTotalTtc }}</td>
+            </tr>
+            <tr>
+                <th>Facture_total_ht</th>
+                <td>{{ commande.factureTotalHt }}</td>
+            </tr>
+            <tr>
+                <th>Facture_tva</th>
+                <td>{{ commande.factureTva }}</td>
+            </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('app_commande_crud_index') }}">Retour à la liste</a>
+    <a href="{{ path('app_commande_crud_index') }}">back to list</a>
 
-    <a href="{{ path('app_commande_crud_edit', {'id': commande.id}) }}">Modifier</a>
+    <a href="{{ path('app_commande_crud_edit', {'id': commande.id}) }}">edit</a>
 
     {{ include('commande_crud/_delete_form.html.twig') }}
 {% endblock %}

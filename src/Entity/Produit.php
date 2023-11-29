@@ -46,9 +46,6 @@ class Produit
 
     #[ORM\Column]
     private ?int $prixachat = null;
-
-    #[ORM\Column(nullable: true)]
-    private ?int $stock = null;
     
 
     #[ORM\ManyToOne(inversedBy: 'Produits')]
@@ -59,13 +56,8 @@ class Produit
     #[ORM\JoinColumn(nullable: true)]
     private ?Categorie $categorie = null;
 
-    
-
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column]
     private ?int $quantite = null;
-
-    
-
 
 
     public function getId(): ?int
@@ -199,17 +191,6 @@ class Produit
         return $this;
     }
 
-    public function getStock(): ?int
-    {
-        return $this->stock;
-    }
-
-    public function setStock(int $stock): static
-    {
-        $this->stock = $stock;
-
-        return $this;
-    }
 
     public function getQuantite(): ?int
     {

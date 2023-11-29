@@ -66,10 +66,11 @@ class CommandeController extends AbstractController
             $transporteur = $form->get('transporteur')->getData();
             $livraison = $form->get('adresse')->getData();
             $livraisonForCommande = $livraison->getPrenom().' '.$livraison->getNom();
-            $livraisonForCommande .= '</br>' . $livraison->getTelephone();
-            $livraisonForCommande .= '</br>' . $livraison->getAdresse();
-            $livraisonForCommande .= '</br>' . $livraison->getCodepostal() . '-' . $livraison->getVille();
-            $livraisonForCommande .= '</br>' . $livraison->getPays();
+            // dd($livraison->getTelephone());
+            $livraisonForCommande .= ' ' . $livraison->getTelephone();
+            $livraisonForCommande .= ' ' . $livraison->getAdresse();
+            $livraisonForCommande .= ' ' . $livraison->getCodepostal() . '-' . $livraison->getVille();
+            $livraisonForCommande .= ' ' . $livraison->getPays();
             $total1 = $pttc + $fdp; 
             $pttc = $total1 * 1.2 ;
             // dd($livraisonForCommande);
@@ -84,7 +85,8 @@ class CommandeController extends AbstractController
             $commande->setIsPaid('bool');
             $commande->setMethode('stripe'); 
             $commande->setAdrFact($livraisonForCommande); 
-            $commande->setDateFact($datetimeimmutable);
+            $commande->setComAdrLivr($livraison);
+            // $commande->setDateFact($datetimeimmutable);
             $this->em->persist($commande);
                         // dd($commande); 
 
@@ -97,12 +99,12 @@ class CommandeController extends AbstractController
                 $recapDetails->setQuantite($produit['quantite']); 
                 $recapDetails->setPrixAchat($produit['produit']->getPrixachat()); 
                 $recapDetails->setProduit($produit['produit']->getSousrubriqueart());
-                $recapDetails->setTotalRecap($produit['produit']->getPrixAchat() * $produit['quantite']
-            );
+                $recapDetails->setTotalRecap($produit['produit']->getPrixAchat() * $produit['quantite']);
+                $produit['produit']->setQuantite($produit['produit']->getQuantite() - $produit['quantite']);
+        
                 $this->em->persist($recapDetails);
-            }
-
             $this->em->flush();
+        }
 
             // dd($form->getData()); 
             return $this->render('commande/recap.html.twig', [
@@ -123,4 +125,5 @@ class CommandeController extends AbstractController
         return $this->redirectToRoute('cart_index');
 
     }
+    
 }

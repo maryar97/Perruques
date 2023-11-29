@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Commande;
-use App\Form\Commande2Type;
+use App\Form\Commande1Type;
 use App\Service\CartService;
 use App\Repository\AdresseRepository;
 use App\Repository\CommandeRepository;
@@ -24,7 +24,7 @@ class CommandeCrudController extends AbstractController
         ]);
     }
 
-    #[Route('/mesCommande', name: 'app_commande_mon_index', methods: ['GET'])]
+    #[Route('/mesCommandes', name: 'app_commande_mon_index', methods: ['GET'])]
     public function monIndex(CommandeRepository $commandeRepository,CartService $cartService): Response
     {
         
@@ -34,12 +34,39 @@ class CommandeCrudController extends AbstractController
         ]);
     }
 
+    
+    #[Route('/facture/{id}', name: 'app_commande_facture', methods: ['GET'])]
+    public function facture(CommandeRepository $commandeRepository, $id): Response
+    {
+        $factId = $commandeRepository->findOneBy(['com_fact_id' => $id])->getComFactId();
+        $comId = $commandeRepository->findOneBy(['com_fact_id' => $id])->getId();
+        $createAt = $commandeRepository->findOneBy(['com_fact_id' => $id])->getCreateAt();
+        $dateFact = $commandeRepository->findOneBy(['com_fact_id' => $id])->getCreateAt();
+
+
+
+
+        
+        return $this->render('commande_crud/facture.html.twig', [
+            'factId' => $factId,
+            'comId' => $comId,
+            'createAt' => $createAt,
+            'dateFact' => $dateFact,
+
+
+
+            'commandes' => $commandeRepository->findBy(['com_users' => $this->getUser()]),
+
+        ]);
+    }
+
+
 
     #[Route('/new', name: 'app_commande_crud_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $commande = new Commande();
-        $form = $this->createForm(Commande2Type::class, $commande);
+        $form = $this->createForm(Commande1Type::class, $commande);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
