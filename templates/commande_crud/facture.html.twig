@@ -9,29 +9,39 @@
             <img src="/images/logo.png" class="logo col-4"> 
                 <div class='col-6 my-auto'>
                     <div>Facture N° {{ factId }}</div>
-                    <div>(Commande N°  {{ comId }}  du  {{ createAt ? createAt|date('Y-m-d') : '' }})</div>
+                    <div>Commande N°  {{ comId }}  du  {{ createAt ? createAt|date('Y-m-d') : '' }}</div>
                     <div>Date : {{ dateFact ? dateFact|date('Y-m-d') : '' }}</div>
                     
                 </div>
+            {# Client : n°{{ utiId }}, {{ adresse }} , {{ tel }}, {{ email }} #}
+            <div> Client : n°{{ adrLivr.Id }}, {{ adrLivr.AdrNom}} {{ adrLivr.AdrPrenom}}  </div>
+        <div> Adresse de livraison : {{ adrLivr.Adresse }}, {{ adrLivr.AdrCodePostal }}, {{adrLivr.AdrVille}}, {{ adrLivr.AdrPays}} </div>
+            <div> {{ adrLivr.AdrTelephone }}, {{ adrLivr.AdrEmail }}  </div>
+            </div>
+            {# Adresse de facturation : {{ adrFact.AdrNom }} {{ adrFact.AdrPrenom }} , {{ adrFact.AdrRue }} , {{ adrFact.AdrCodePostal }} {{ adrFact.AdrVille }} {{ adrFact.AdrPays }} #}
+        </div>
+        <div class='mt-5'> Description de la commande </div>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>REF.</th>
+                        <th>DESIGNATION</th>
+                        <th>P U</th>
+                        <th>Quantité</th>
+                        <th>Total HT</th>
+                        <th>TVA</th>
+                        <th>Total TTC</th>
+                        <th>Adresse</th>
+                        <th>Adresse de facturation</th>
+                        <th>Numero client</th>
+                        <th>Email</th>
+                        <th>Telephone</th>
+                        <th>Date commande</th> 
+                
+                    </tr>
+                </thead>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nom du transporteur</th>
-                <th>Prix du transport</th>
-                <th>Adresse de livraison</th>
-                <th>Payé</th>
-                <th>Mode de paiement</th>
-                {# <th>Reference</th> #}
-                {# <th>Identifiant de la session</th>
-                <th>Identifiant paypal</th> #}
-                <th>Date de commande</th>
-                <th>Adresse de facturation</th>
-                <th>Date de facturation</th>
-            </tr>
-        </thead>
-        <tbody>
+                <tbody>
         {% for commande in commandes %}
             <tr>
                 <td>{{ commande.id }}</td>
@@ -39,21 +49,22 @@
                 <td>{{ commande.transporteurPrix }}</td>
                 <td>{{ commande.livraison }}</td>
                 <td>{{ commande.isPaid ? 'Yes' : 'No' }}</td>
-                <td>{{ commande.methode }}</td>
-                {# <td>{{ commande.reference }}</td> #}
-                {# <td>{{ commande.stripeSessionId }}</td>
-                <td>{{ commande.paypalCommandeId }}</td> #}
+                <td>{{ commande.methode }}</td> 
+                <td>{{ commande.reference }}</td>
+                <td>{{ commande.stripeSessionId }}</td>
+                <td>{{ commande.paypalCommandeId }}</td> 
                 <td>{{ commande.CreateAt ? commande.CreateAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ commande.adrFact }}</td>
-                <td>{{ commande.CreateAt ? commande.CreateAt|date('Y-m-d H:i:s T') : '' }}</td>
+                <td>{{ commande.CreateAt ? commande.CreateAt|date('Y-m-d H:i:s T') : '' }}</td> 
                 
-            </tr>
+            </tr> 
         {% else %}
             <tr>
                 <td colspan="14">Aucun enregistrement trouvé</td>
             </tr>
         {% endfor %}
-        </tbody>
-    </table>
+        
+        </tbody> 
+    </table> 
 
-{% endblock %}
+{% endblock %} 

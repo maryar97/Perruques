@@ -57,7 +57,7 @@ class Commande
     #[ORM\ManyToOne(inversedBy: 'commandes')]
     private ?Users $com_users = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?int $com_fact_id = null;
 
     #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2, nullable: true)]

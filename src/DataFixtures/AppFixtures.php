@@ -366,24 +366,26 @@ class AppFixtures extends Fixture
 
                 $adresse1 = new Adresse();
                 $adresse1->setTitre('ma maison')
-                        ->setPrenom('Lucas')
-                        ->setNom('Dro')
+                        ->setAdrPrenom('Lucas')
+                        ->setAdrNom('Dro')
                         ->setAdresse('20 rue jfkfkf')
-                        ->setCodepostal('80080')
-                        ->setVille('Amiens')
-                        ->setTelephone('0767897678')
-                        ->setPays('France');
+                        ->setAdrCodepostal('80080')
+                        ->setAdrVille('Amiens')
+                        ->setAdrTelephone('0767897678')
+                        ->setAdrPays('France')
+                        ->setAdrEmail('');
                         $manager->persist($adresse1);
 
                 $adresse2 = new Adresse();
                 $adresse2->setTitre('au travail')
-                        ->setPrenom('Quentin')
-                        ->setNom('Alexandre')
+                        ->setAdrPrenom('Quentin')
+                        ->setAdrNom('Alexandre')
                         ->setAdresse('4 rue henri dunant')
-                        ->setCodepostal('60100')
-                        ->setVille('Creil')
-                        ->setTelephone('0_67897678')
-                        ->setPays('Suisse');
+                        ->setAdrCodepostal('60100')
+                        ->setAdrVille('Creil')
+                        ->setAdrTelephone('0_67897678')
+                        ->setAdrPays('Suisse')
+                        ->setAdrEmail('');
                         $manager->persist($adresse2);
 
 

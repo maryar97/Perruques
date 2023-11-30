@@ -36,23 +36,29 @@ class CommandeCrudController extends AbstractController
 
     
     #[Route('/facture/{id}', name: 'app_commande_facture', methods: ['GET'])]
-    public function facture(CommandeRepository $commandeRepository, $id): Response
+    public function facture(CommandeRepository $commandeRepository, $id, AdresseRepository $adresseRepository): Response
     {
-        $factId = $commandeRepository->findOneBy(['com_fact_id' => $id])->getComFactId();
+        $adrFactId = $commandeRepository->findOneBy(['com_fact_id' => $id])->getComFactId();
         $comId = $commandeRepository->findOneBy(['com_fact_id' => $id])->getId();
         $createAt = $commandeRepository->findOneBy(['com_fact_id' => $id])->getCreateAt();
         $dateFact = $commandeRepository->findOneBy(['com_fact_id' => $id])->getCreateAt();
-
-
-
+        $adrLivrID = $commandeRepository->findOneBy(['com_fact_id' => $id])->getComAdrLivr()->getId();
+        $adrLivr = $adresseRepository->findOneBy(['id' => $adrLivrID]);
+        $adrFact = $adresseRepository->findOneBy(['id' => $adrFactId]);
+        $usersId = $commandeRepository->findOneBy(['com_fact_id' => $id])->getComUsers()->getId();
+        $factId = $commandeRepository->findOneBy(['com_fact_id' => $id])->getComFactId();
 
         
         return $this->render('commande_crud/facture.html.twig', [
-            'factId' => $factId,
+            'adrFactId' => $adrFactId,
             'comId' => $comId,
             'createAt' => $createAt,
             'dateFact' => $dateFact,
-
+            'adrLivr' => $adrLivr,
+            'adrFact' => $adrFact,
+            'usersId' => $usersId,
+            'factId' => $factId,
+            
 
 
             'commandes' => $commandeRepository->findBy(['com_users' => $this->getUser()]),

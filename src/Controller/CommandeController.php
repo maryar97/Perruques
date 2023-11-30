@@ -2,17 +2,19 @@
 
 
 namespace App\Controller;
+use App\Entity\Produit;
 use App\Entity\Commande;
 use App\Form\CommandeType;
 use App\Entity\RecapDetails;
 use App\Service\CartService;
+use App\Repository\CommandeRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use phpDocumentor\Reflection\Types\Boolean;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class CommandeController extends AbstractController
 {
@@ -65,12 +67,13 @@ class CommandeController extends AbstractController
             $datetimeimmutable = new \DateTimeImmutable( 'now');
             $transporteur = $form->get('transporteur')->getData();
             $livraison = $form->get('adresse')->getData();
-            $livraisonForCommande = $livraison->getPrenom().' '.$livraison->getNom();
+            $livraisonForCommande = $livraison->getAdrPrenom().' '.$livraison->getAdrNom();
             // dd($livraison->getTelephone());
-            $livraisonForCommande .= ' ' . $livraison->getTelephone();
+            $livraisonForCommande .= ' ' . $livraison->getAdrTelephone();
             $livraisonForCommande .= ' ' . $livraison->getAdresse();
-            $livraisonForCommande .= ' ' . $livraison->getCodepostal() . '-' . $livraison->getVille();
-            $livraisonForCommande .= ' ' . $livraison->getPays();
+            $livraisonForCommande .= ' ' . $livraison->getAdrCodepostal() . '-' . $livraison->getAdrVille();
+            // $comId = $commandeRepository->findOneBy(['com_fact_id' => $id])->getId();
+            $livraisonForCommande .= ' ' . $livraison->getAdrPays();
             $total1 = $pttc + $fdp; 
             $pttc = $total1 * 1.2 ;
             // dd($livraisonForCommande);
@@ -85,7 +88,9 @@ class CommandeController extends AbstractController
             $commande->setIsPaid('bool');
             $commande->setMethode('stripe'); 
             $commande->setAdrFact($livraisonForCommande); 
-            $commande->setComAdrLivr($livraison);
+            // $commande->setComAdrLivr($livraison);
+            // dd($commande);
+            // $commande->setComFactId($comId);
             // $commande->setDateFact($datetimeimmutable);
             $this->em->persist($commande);
                         // dd($commande); 

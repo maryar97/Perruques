@@ -7,13 +7,14 @@ use App\Entity\Produit;
 use App\Entity\Commande;
 use App\Service\CartService;
 use Stripe\Checkout\Session;
+use App\Repository\CommandeRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class PaymentController extends AbstractController
 {
@@ -144,9 +145,20 @@ class PaymentController extends AbstractController
     }
 
     #[Route('/order/success/{reference}', name: 'payment_success')]
-    public function StripeSuccess(SessionInterface $session, $reference, CartService $cartService): Response
+    public function StripeSuccess(SessionInterface $session, $reference, CartService $cartService, EntityManagerInterface $em): Response
     {
+        //$commande = $commandeRepository->findOneBy(['reference'=>$reference]);
+       // dd($commande->getId());
+        $commande = $this->em->getRepository(Commande::class)->findOneBy(['reference'=>$reference]);
+
+
+
+
                     $session->remove('cart');
+                    $commande->setComFactId($commande->getId());
+                    $em->persist($commande);
+                    $em->flush(); 
+
 
 
 
